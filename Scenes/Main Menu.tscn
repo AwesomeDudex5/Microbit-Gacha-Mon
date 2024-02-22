@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://ccnrnkw414kg6"]
+[gd_scene load_steps=4 format=3 uid="uid://ccnrnkw414kg6"]
 
 [ext_resource type="Script" path="res://Scripts/Main Menu.gd" id="1_kt68n"]
+[ext_resource type="PackedScene" uid="uid://kw0ud4wldqe8" path="res://Prefabs/highlight_button.tscn" id="2_ifb6n"]
+[ext_resource type="PackedScene" uid="uid://b3emk4p8tjoki" path="res://Prefabs/game_manager.tscn" id="3_tx85f"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -11,7 +13,20 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_kt68n")
 
-[node name="Gacha Button" type="Button" parent="."]
+[node name="highlight_button" parent="." instance=ExtResource("2_ifb6n")]
+layout_mode = 1
+offset_left = 105.0
+offset_top = 505.0
+offset_right = -789.0
+offset_bottom = -49.0
+scale = Vector2(1.03624, 0.916488)
+
+[node name="Buttons" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Gacha Button" type="Button" parent="Buttons"]
 layout_mode = 2
 offset_left = 107.0
 offset_top = 520.0
@@ -20,7 +35,7 @@ offset_bottom = 576.0
 text = "Gacha
 "
 
-[node name="Battle Button" type="Button" parent="."]
+[node name="Battle Button" type="Button" parent="Buttons"]
 layout_mode = 2
 offset_left = 434.0
 offset_top = 512.0
@@ -29,7 +44,7 @@ offset_bottom = 580.0
 text = "Battle
 "
 
-[node name="Quit Button" type="Button" parent="."]
+[node name="Quit Button" type="Button" parent="Buttons"]
 layout_mode = 2
 offset_left = 833.0
 offset_top = 524.0
@@ -38,6 +53,8 @@ offset_bottom = 569.0
 text = "Quit
 "
 
-[connection signal="pressed" from="Gacha Button" to="." method="_on_gacha_button_pressed"]
-[connection signal="pressed" from="Battle Button" to="." method="_on_battle_button_pressed"]
-[connection signal="pressed" from="Quit Button" to="." method="_on_quit_button_pressed"]
+[node name="GameManager" parent="." instance=ExtResource("3_tx85f")]
+
+[connection signal="pressed" from="Buttons/Gacha Button" to="." method="_on_gacha_button_pressed"]
+[connection signal="pressed" from="Buttons/Battle Button" to="." method="_on_battle_button_pressed"]
+[connection signal="pressed" from="Buttons/Quit Button" to="." method="_on_quit_button_pressed"]

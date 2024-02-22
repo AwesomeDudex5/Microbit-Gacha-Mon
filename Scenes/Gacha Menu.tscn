@@ -1,8 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://cm1kyx8lomm4r"]
+[gd_scene load_steps=6 format=3 uid="uid://cm1kyx8lomm4r"]
 
 [ext_resource type="Script" path="res://Scripts/Gacha Menu.gd" id="1_wid83"]
+[ext_resource type="Script" path="res://Scripts/Gacha System.gd" id="2_506f3"]
+[ext_resource type="PackedScene" uid="uid://kw0ud4wldqe8" path="res://Prefabs/highlight_button.tscn" id="2_msih2"]
+[ext_resource type="Texture2D" uid="uid://dpbv0bjwnikbe" path="res://Sprites/capsule.png" id="3_7w1ss"]
+[ext_resource type="Texture2D" uid="uid://dsayasiwgmilc" path="res://Sprites/capsule-vending-machine-png.png" id="3_yy7v0"]
 
-[node name="Control" type="Control"]
+[node name="Gacha Menu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,16 +15,15 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_wid83")
 
-[node name="Roll Button" type="Button" parent="."]
-layout_mode = 0
-offset_left = 494.0
-offset_top = 468.0
-offset_right = 667.0
-offset_bottom = 545.0
-text = "Roll
-"
+[node name="highlight_button" parent="." instance=ExtResource("2_msih2")]
+layout_mode = 1
 
-[node name="Back Button" type="Button" parent="."]
+[node name="Buttons" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Back Button" type="Button" parent="Buttons"]
 layout_mode = 0
 offset_left = 26.0
 offset_top = 12.0
@@ -29,4 +32,49 @@ offset_bottom = 89.0
 text = "Back
 "
 
-[connection signal="pressed" from="Back Button" to="." method="_on_back_button_pressed"]
+[node name="Roll Button" type="Button" parent="Buttons"]
+layout_mode = 0
+offset_left = 494.0
+offset_top = 512.0
+offset_right = 667.0
+offset_bottom = 589.0
+text = "Roll
+"
+
+[node name="Gacha System" type="Node" parent="."]
+script = ExtResource("2_506f3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Gacha System"]
+
+[node name="Pal Sprite" type="Sprite2D" parent="Gacha System"]
+position = Vector2(800, 282)
+scale = Vector2(0.535282, 0.535282)
+texture = ExtResource("3_7w1ss")
+
+[node name="Capsule Machine Sprite" type="Sprite2D" parent="Gacha System"]
+position = Vector2(482, 270)
+scale = Vector2(0.234122, 0.234122)
+texture = ExtResource("3_yy7v0")
+
+[node name="Coins to Roll" type="Label" parent="Gacha System"]
+offset_left = 302.0
+offset_top = 518.0
+offset_right = 469.0
+offset_bottom = 590.0
+theme_override_font_sizes/font_size = 26
+text = "1 Coin to Roll"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Coins Available" type="Label" parent="Gacha System"]
+offset_left = 687.0
+offset_top = 534.0
+offset_right = 894.0
+offset_bottom = 576.0
+theme_override_font_sizes/font_size = 26
+text = "Coins Owned: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="Buttons/Back Button" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="Buttons/Roll Button" to="." method="_on_roll_button_pressed"]
