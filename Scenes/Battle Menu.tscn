@@ -1,6 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://c4xythlgbmlks"]
+[gd_scene load_steps=8 format=3 uid="uid://c4xythlgbmlks"]
 
 [ext_resource type="Script" path="res://Scripts/Battle Menu.gd" id="1_j2d7d"]
+[ext_resource type="AudioStream" uid="uid://ci57dfw32vgpj" path="res://Sounds/hurt.wav" id="2_6fjk4"]
+[ext_resource type="Texture2D" uid="uid://cp45u47aqdnhx" path="res://Sprites/staryu.png" id="2_kk3o8"]
+[ext_resource type="Script" path="res://Scripts/HPBar.gd" id="4_3u4l6"]
+[ext_resource type="Texture2D" uid="uid://fjob8jkku6pi" path="res://Sprites/pidgey.png" id="4_ye3gk"]
+[ext_resource type="PackedScene" uid="uid://bkcraanvvcfg1" path="res://Scenes/Monsters/Water Monster.tscn" id="5_iqciq"]
+[ext_resource type="PackedScene" uid="uid://c3jkme1v5p17p" path="res://Scenes/Enemies/Enemy1.tscn" id="6_56v6y"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -11,16 +17,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_j2d7d")
 
-[node name="Choose Pal" type="Button" parent="."]
-layout_mode = 0
-offset_left = 494.0
-offset_top = 468.0
-offset_right = 667.0
-offset_bottom = 545.0
-text = "Pal
-
-"
-
 [node name="Back" type="Button" parent="."]
 layout_mode = 0
 offset_left = 47.0
@@ -30,4 +26,127 @@ offset_bottom = 111.0
 text = "Back
 "
 
+[node name="BattleLog" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 352.0
+offset_top = 430.0
+offset_right = 743.0
+offset_bottom = 585.0
+
+[node name="HurtSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_6fjk4")
+
+[node name="TurnTimer" type="Timer" parent="."]
+wait_time = 1.5
+
+[node name="Player" type="Node2D" parent="."]
+position = Vector2(220, 292)
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+scale = Vector2(-1, 1)
+texture = ExtResource("2_kk3o8")
+metadata/_edit_lock_ = true
+
+[node name="Move One" type="PanelContainer" parent="Player"]
+offset_left = -135.0
+offset_top = 143.0
+offset_right = -35.0
+offset_bottom = 193.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Name" type="Label" parent="Player/Move One"]
+layout_mode = 2
+text = "move one"
+horizontal_alignment = 1
+
+[node name="Move Two" type="PanelContainer" parent="Player"]
+offset_left = 14.0
+offset_top = 143.0
+offset_right = 114.0
+offset_bottom = 193.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Name" type="Label" parent="Player/Move Two"]
+layout_mode = 2
+text = "move two"
+horizontal_alignment = 1
+
+[node name="Move Description" type="PanelContainer" parent="Player"]
+offset_left = -131.0
+offset_top = 211.0
+offset_right = 109.0
+offset_bottom = 291.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Margin" type="MarginContainer" parent="Player/Move Description"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Description" type="Label" parent="Player/Move Description/Margin"]
+custom_minimum_size = Vector2(224, 64)
+layout_mode = 2
+size_flags_vertical = 1
+text = "description"
+autowrap_mode = 3
+
+[node name="HPBar" type="ProgressBar" parent="Player"]
+offset_left = -133.0
+offset_top = 84.0
+offset_right = 109.0
+offset_bottom = 127.0
+max_value = 10.0
+step = 1.0
+value = 10.0
+rounded = true
+show_percentage = false
+script = ExtResource("4_3u4l6")
+
+[node name="Label" type="Label" parent="Player/HPBar"]
+layout_mode = 0
+offset_right = 244.0
+offset_bottom = 44.0
+theme_override_font_sizes/font_size = 28
+text = "10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Monster" parent="Player" instance=ExtResource("5_iqciq")]
+
+[node name="Enemy" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy"]
+position = Vector2(901, 306)
+texture = ExtResource("4_ye3gk")
+metadata/_edit_lock_ = true
+
+[node name="HPBar" type="ProgressBar" parent="Enemy"]
+offset_left = 773.0
+offset_top = 376.0
+offset_right = 1015.0
+offset_bottom = 419.0
+max_value = 10.0
+step = 1.0
+value = 10.0
+fill_mode = 1
+show_percentage = false
+script = ExtResource("4_3u4l6")
+
+[node name="Label" type="Label" parent="Enemy/HPBar"]
+layout_mode = 0
+offset_right = 244.0
+offset_bottom = 44.0
+theme_override_font_sizes/font_size = 28
+text = "10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Monster" parent="Enemy" instance=ExtResource("6_56v6y")]
+
 [connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
+[connection signal="timeout" from="TurnTimer" to="." method="_on_turn_timer_timeout"]

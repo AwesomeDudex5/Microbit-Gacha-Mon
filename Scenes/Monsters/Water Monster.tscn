@@ -1,0 +1,9 @@
+[gd_scene load_steps=4 format=3 uid="uid://bkcraanvvcfg1"]
+
+[ext_resource type="PackedScene" uid="uid://cbjrblmggahb3" path="res://Scenes/Monster.tscn" id="1_oqeue"]
+[ext_resource type="Script" path="res://Scripts/Monsters/Water Monster.gd" id="2_n4n0d"]
+[ext_resource type="Texture2D" uid="uid://cp45u47aqdnhx" path="res://Sprites/staryu.png" id="3_m4wdx"]
+
+[node name="Monster" instance=ExtResource("1_oqeue")]
+script = ExtResource("2_n4n0d")
+sprite = ExtResource("3_m4wdx")
