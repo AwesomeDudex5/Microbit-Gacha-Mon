@@ -16,7 +16,6 @@ func _ready():
 
 
 func _input(event):
-	
 	if(event.is_action_pressed("0_key_push")):
 		new_poten_input = 0
 	elif (event.is_action_pressed("1_key_push")):

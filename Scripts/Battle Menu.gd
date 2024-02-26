@@ -4,6 +4,7 @@ extends Control
 var select_enemy_scene
 @export var select_player_packed_scene: PackedScene
 var select_player_scene
+@export var combat_end_scene: PackedScene
 var selected_move = 1
 var yellow = Color(1.0, 1.0, 0.0, 1.0)
 var white = Color(1.0, 1.0, 1.0, 1.0)
@@ -23,7 +24,19 @@ var white = Color(1.0, 1.0, 1.0, 1.0)
 @onready var move_description = $"Player/Move Description"
 @onready var move_description_label = $"Player/Move Description/Margin/Description"
 
-enum {NO_MON_SELECTED, SELECTING_ENEMY, SELECTING_PLAYER, MOVE_SELECTION, PLAYER_MOVE, ENEMY_MOVE}
+var current_input = -1
+var new_input
+
+enum {
+	NO_MON_SELECTED, 
+	SELECTING_ENEMY, 
+	SELECTING_PLAYER, 
+	MOVE_SELECTION, 
+	PLAYER_MOVE, 
+	ENEMY_MOVE,
+	WIN,
+	LOSS
+}
 var state = NO_MON_SELECTED
 
 
@@ -31,13 +44,33 @@ func _ready():
 	transition_to_selecting_enemy()
 
 
-func _input(event):
-	if state == MOVE_SELECTION:
-		if event.is_action_pressed("make selection"):
-			transition_to_player_move()
-		if event.is_action_pressed("toggle selection"):
-			change_selection()
+func _unhandled_input(event):
+	if state != MOVE_SELECTION:
+		return
+	if(event.is_action_pressed("0_key_push")):
+		update_input(0)
+	elif (event.is_action_pressed("1_key_push")):
+		update_input(1)
+	elif (event.is_action_pressed("2_key_push")):
+		update_input(2)
+	elif (event.is_action_pressed("3_key_push")):
+		update_input(3)
+	elif (event.is_action_pressed("4_key_push")):
+		update_input(4)
+	
+	if event.is_action_pressed("right_button"):
+		transition_to_player_move()
 
+
+func update_input(n):
+	if current_input == -1:
+		current_input = n
+		new_input = n
+	else:
+		new_input = n
+	if current_input != new_input:
+		change_selection()
+	current_input = new_input
 
 func transition_to_player_move():
 	state = PLAYER_MOVE
@@ -104,6 +137,30 @@ func add_player_monster(scene):
 	player_sprite = $Player/Monster/Sprite2D
 	select_player_scene.queue_free()
 	transition_to_select_move()
+
+
+func transition_to_win():
+	var scene = combat_end_scene.instantiate()
+	get_parent().add_child(scene)
+	scene.outcome = scene.WIN
+	scene.victory_sfx.play()
+	scene.do_win()
+	player_monster.reparent(scene.monster_position)
+	player_monster.position.x = 0
+	player_monster.position.y = 0
+	queue_free()
+
+
+func transition_to_loss():
+	var scene = combat_end_scene.instantiate()
+	get_parent().add_child(scene)
+	scene.outcome = scene.LOSS
+	scene.loss_sfx.play()
+	scene.do_loss()
+	player_monster.reparent(scene.monster_position)
+	player_monster.position.x = 0
+	player_monster.position.y = 0
+	queue_free()
 
 
 func execute_player_move(move_number):
@@ -175,11 +232,18 @@ func _on_back_pressed():
 
 
 func check_for_win_or_loss():
-	pass
+	if enemy_monster.current_hp <= 0:
+		transition_to_win()
+		return true
+	if player_monster.current_hp <= 0:
+		transition_to_loss()
+		return true
+	return false
 
 
 func _on_turn_timer_timeout():
-	check_for_win_or_loss()
+	if check_for_win_or_loss():
+		return
 	if state == PLAYER_MOVE:
 		transition_to_enemy_move()
 	elif state == ENEMY_MOVE:

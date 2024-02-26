@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://c4xythlgbmlks"]
+[gd_scene load_steps=7 format=3 uid="uid://c4xythlgbmlks"]
 
 [ext_resource type="Script" path="res://Scripts/Battle Menu.gd" id="1_j2d7d"]
 [ext_resource type="AudioStream" uid="uid://ci57dfw32vgpj" path="res://Sounds/hurt.wav" id="2_6fjk4"]
 [ext_resource type="PackedScene" uid="uid://by4q50ha5qkmf" path="res://Scenes/Enemy Select.tscn" id="2_pvo74"]
 [ext_resource type="PackedScene" uid="uid://bvivgd31s38gg" path="res://Scenes/Player Monster Select.tscn" id="3_2u08b"]
+[ext_resource type="PackedScene" uid="uid://8b4pyot2gk72" path="res://Scenes/CombatEnd.tscn" id="4_0vxcf"]
 [ext_resource type="Script" path="res://Scripts/HPBar.gd" id="4_3u4l6"]
 
 [node name="Control" type="Control"]
@@ -16,6 +17,7 @@ grow_vertical = 2
 script = ExtResource("1_j2d7d")
 select_enemy_packed_scene = ExtResource("2_pvo74")
 select_player_packed_scene = ExtResource("3_2u08b")
+combat_end_scene = ExtResource("4_0vxcf")
 
 [node name="BattleLog" type="RichTextLabel" parent="."]
 layout_mode = 0

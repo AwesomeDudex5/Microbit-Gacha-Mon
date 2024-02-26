@@ -1,5 +1,12 @@
 extends Node
 
+# victory jingle from:
+# https://freesound.org/people/LittleRobotSoundFactory/sounds/274181/
+# using with CC 4.0 by LittleRobotSoundFactory
+# loss jingle from:
+# https://freesound.org/people/LittleRobotSoundFactory/sounds/270329/
+# using with CC 4.0 by LittleRobotSoundFactory
+
 var total_coins = 0
 var pals_inventory = [
 	preload("res://Scenes/Monsters/Fire Monster.tscn"), 

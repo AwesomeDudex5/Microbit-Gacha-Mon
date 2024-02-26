@@ -40,8 +40,9 @@ func _process(delta):
 
 
 func _input(event):
-	if (event.is_action_pressed("left_button")):
+	if (event.is_action_pressed("right_button")):
 		select_enemy()
+		get_viewport().set_input_as_handled()
 	
 	if (event.is_action_pressed("0_key_push")):
 		new_poten_input = 0
