@@ -6,4 +6,6 @@
 
 [node name="Monster" instance=ExtResource("1_32yt3")]
 script = ExtResource("2_6atrk")
-sprite = ExtResource("3_t2ydn")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("3_t2ydn")

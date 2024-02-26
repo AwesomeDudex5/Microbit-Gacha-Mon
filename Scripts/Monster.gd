@@ -4,7 +4,6 @@ extends Node
 @export var max_hp = 10
 @export var starting_att = 0
 @export var starting_def = 0
-@export var sprite: Resource
 var moves = []
 @onready var MoveList = get_child(0)
 @onready var current_hp = max_hp

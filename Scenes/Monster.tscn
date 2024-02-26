@@ -1,8 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://cbjrblmggahb3"]
+[gd_scene load_steps=2 format=3 uid="uid://cbjrblmggahb3"]
 
 [ext_resource type="Script" path="res://Scripts/Monster.gd" id="1_v43uq"]
-[ext_resource type="Texture2D" uid="uid://fjob8jkku6pi" path="res://Sprites/pidgey.png" id="2_uwlsi"]
 
 [node name="Monster" type="Node2D"]
 script = ExtResource("1_v43uq")
-sprite = ExtResource("2_uwlsi")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(-1, 1)

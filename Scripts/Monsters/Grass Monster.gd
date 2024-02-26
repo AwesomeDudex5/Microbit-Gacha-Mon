@@ -4,6 +4,8 @@ func _ready():
 	moves.append(move1)
 	moves.append(move2)
 
+var description = "he grows in the sunlight -u-"
+
 var m1_name = "grass1"
 var m1_description = "deals 3-4 DMG"
 func move1(user: Monster, enemy: Monster):

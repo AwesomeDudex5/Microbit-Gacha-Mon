@@ -1,17 +1,21 @@
 extends Control
 
+@export var select_enemy_packed_scene: PackedScene
+var select_enemy_scene
+@export var select_player_packed_scene: PackedScene
+var select_player_scene
 var selected_move = 1
 var yellow = Color(1.0, 1.0, 0.0, 1.0)
 var white = Color(1.0, 1.0, 1.0, 1.0)
-@onready var player_monster = $Player/Monster
-@onready var enemy_monster = $Enemy/Monster
-@onready var enemy_sprite = $Enemy/Sprite2D
-@onready var player_sprite = $Player/Sprite2D
+@onready var player_monster
+@onready var enemy_monster
+@onready var enemy_sprite
+@onready var player_sprite
 @onready var hurt_sfx = $HurtSFX
 @onready var battle_log = $BattleLog
 @onready var turn_timer = $TurnTimer
 @onready var player_hp_bar = $Player/HPBar
-@onready var enemy_hp_bar = $Enemy/HPBar
+@onready var enemy_hp_bar = $Player/HPBar
 @onready var move_one_container = $"Player/Move One"
 @onready var move_two_container = $"Player/Move Two"
 @onready var move_one_label = $"Player/Move One/Name"
@@ -19,16 +23,12 @@ var white = Color(1.0, 1.0, 1.0, 1.0)
 @onready var move_description = $"Player/Move Description"
 @onready var move_description_label = $"Player/Move Description/Margin/Description"
 
-enum {NO_MON_SELECTED, MOVE_SELECTION, PLAYER_MOVE, ENEMY_MOVE}
-var state = MOVE_SELECTION
+enum {NO_MON_SELECTED, SELECTING_ENEMY, SELECTING_PLAYER, MOVE_SELECTION, PLAYER_MOVE, ENEMY_MOVE}
+var state = NO_MON_SELECTED
+
 
 func _ready():
-	update_selected_move()
-	update_move_names()
-	player_sprite.texture = player_monster.sprite
-	enemy_sprite.texture = enemy_monster.sprite
-	player_hp_bar.set_max_hp(player_monster.max_hp)
-	enemy_hp_bar.set_max_hp(enemy_monster.max_hp)
+	transition_to_selecting_enemy()
 
 
 func _input(event):
@@ -56,9 +56,54 @@ func transition_to_enemy_move():
 
 func transition_to_select_move():
 	state = MOVE_SELECTION
+	$Player.visible = true
+	$Enemy.visible = true
 	move_one_container.visible = true
 	move_two_container.visible = true
 	move_description.visible = true
+	update_selected_move()
+
+
+func transition_to_selecting_enemy():
+	state = SELECTING_ENEMY
+	$Player.visible = false
+	$Enemy.visible = false
+	select_enemy_scene = select_enemy_packed_scene.instantiate()
+	add_child(select_enemy_scene)
+	select_enemy_scene.battle_menu = self
+
+
+func add_enemy_monster(scene):
+	scene.reparent($Enemy)
+	scene.position.x = 0
+	scene.position.y = 0
+	enemy_monster = scene
+	enemy_hp_bar = $Enemy/HPBar
+	enemy_hp_bar.set_max_hp(enemy_monster.max_hp)
+	enemy_sprite = $Enemy/Monster/Sprite2D
+	select_enemy_scene.queue_free()
+	transition_to_selecting_player()
+
+
+func transition_to_selecting_player():
+	state = SELECTING_PLAYER
+	$Player.visible = false
+	$Enemy.visible = false
+	select_player_scene = select_player_packed_scene.instantiate()
+	add_child(select_player_scene)
+	select_player_scene.battle_menu = self
+
+
+func add_player_monster(scene):
+	scene.reparent($Player)
+	scene.position.x = 0
+	scene.position.y = 0
+	player_monster = scene
+	player_hp_bar = $Player/HPBar
+	player_hp_bar.set_max_hp(player_monster.max_hp)
+	player_sprite = $Player/Monster/Sprite2D
+	select_player_scene.queue_free()
+	transition_to_select_move()
 
 
 func execute_player_move(move_number):
