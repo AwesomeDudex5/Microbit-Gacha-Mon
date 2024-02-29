@@ -4,13 +4,13 @@ func _ready():
 	moves.append(move1)
 	moves.append(move2)
 
-var description = "he swims and jumps and flaps and flops"
+var description = "does inconsistent damage and heals itself"
 
 var m1_name = "water1"
-var m1_description = "deals 1-4 DMG twice"
+var m1_description = "deals 1-3 DMG twice"
 func move1(user: Monster, enemy: Monster):	
 	var min_damage = 1
-	var max_damage = 4
+	var max_damage = 3
 	var r = randi_range(min_damage, max_damage)
 	var dmg1 = deal_damage(r, user, enemy)
 	r = randi_range(min_damage, max_damage)

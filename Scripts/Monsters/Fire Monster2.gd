@@ -4,7 +4,7 @@ func _ready():
 	moves.append(move1)
 	moves.append(move2)
 
-var description = "he's a little fire guy. what else do you want?"
+var description = "can charge up to unleash a powerful ATT!"
 
 var is_charging = false
 

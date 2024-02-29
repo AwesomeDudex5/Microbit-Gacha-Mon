@@ -144,13 +144,13 @@ func add_player_monster(scene):
 
 
 func transition_to_win():
+	GameManager.add_enemy_to_list(enemy_monster.enemy_num)
 	var scene = combat_end_scene.instantiate()
 	get_parent().add_child(scene)
 	scene.outcome = scene.WIN
 	scene.coins_won = enemy_monster.coins
 	scene.victory_sfx.play()
 	scene.do_win()
-	GameManager.add_enemy_to_list(enemy_monster.enemy_num)
 	player_monster.reparent(scene.monster_position)
 	player_monster.position.x = 0
 	player_monster.position.y = 0

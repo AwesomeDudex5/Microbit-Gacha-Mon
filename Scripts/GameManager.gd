@@ -9,6 +9,7 @@ extends Node
 
 var total_coins = 3
 var pals_inventory = [
+	preload("res://Scenes/Monsters/Water Monster2.tscn"),
 ]
 var pal_list = [
 	preload("res://Scenes/Monsters/Water Monster2.tscn"),
@@ -38,10 +39,13 @@ func _ready():
 
 
 func add_enemy_to_list(n):
+	print("HERRERREHERHREBdnkankjfdnkjfda")
 	if num_of_unlocked_enemies >= 6:
+		print("too many enemies")
 		return
 	if n < num_of_unlocked_enemies:
+		print("n is lower than number of unlocked enemies")
 		return
-	if(num_of_unlocked_enemies < unlocked_enemies.size()):
-		num_of_unlocked_enemies += 1
-		unlocked_enemies.append(enemy_list[n])
+	num_of_unlocked_enemies += 1
+	unlocked_enemies.append(enemy_list[n])
+	print("added enemy " + str(n))

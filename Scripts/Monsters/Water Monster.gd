@@ -4,7 +4,7 @@ func _ready():
 	moves.append(move1)
 	moves.append(move2)
 
-var description = "he swims and jumps and flaps and flops"
+var description = "all-arounder. can increase DEF!"
 
 var m1_name = "water1"
 var m1_description = "deals 4-5 DMG"

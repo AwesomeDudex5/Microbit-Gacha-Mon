@@ -33,3 +33,4 @@ func do_win():
 	GameManager.total_coins += coins_won
 	if GameManager.num_of_unlocked_enemies < 6:
 		pass
+		#GameManager.add_enemy_to_list(enemy_monster.enemy_num)
