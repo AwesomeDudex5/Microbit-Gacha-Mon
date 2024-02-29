@@ -42,5 +42,6 @@ func add_enemy_to_list(n):
 		return
 	if n < num_of_unlocked_enemies:
 		return
-	num_of_unlocked_enemies += 1
-	unlocked_enemies.append(enemy_list[n])
+	if(num_of_unlocked_enemies < unlocked_enemies.size()):
+		num_of_unlocked_enemies += 1
+		unlocked_enemies.append(enemy_list[n])

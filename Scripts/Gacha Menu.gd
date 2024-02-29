@@ -33,9 +33,9 @@ func _input(event):
 		num = 5
 	
 	if num == 0 or num == 1 or num == 2:
-		selected_button_index = 1
-	elif num == 3 or num == 4 or num == 5:
 		selected_button_index = 0
+	elif num == 3 or num == 4 or num == 5:
+		selected_button_index = 1
 	
 	if num != -1:
 		update_highlight_position()
