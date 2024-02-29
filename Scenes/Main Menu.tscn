@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://ccnrnkw414kg6"]
+[gd_scene load_steps=5 format=3 uid="uid://ccnrnkw414kg6"]
 
 [ext_resource type="Script" path="res://Scripts/Main Menu.gd" id="1_kt68n"]
 [ext_resource type="PackedScene" uid="uid://kw0ud4wldqe8" path="res://Prefabs/highlight_button.tscn" id="2_ifb6n"]
 [ext_resource type="PackedScene" uid="uid://b3emk4p8tjoki" path="res://Prefabs/game_manager.tscn" id="3_tx85f"]
+[ext_resource type="FontFile" uid="uid://c7kqpyc6orehc" path="res://Fonts/KATANA.ttf" id="4_x6egw"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -65,6 +66,21 @@ text = "Quit
 "
 
 [node name="GameManager" parent="." instance=ExtResource("3_tx85f")]
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 0
+offset_left = 170.0
+offset_top = 186.0
+offset_right = 1009.0
+offset_bottom = 429.0
+theme_override_colors/font_color = Color(0.960784, 0.960784, 0.960784, 1)
+theme_override_colors/font_outline_color = Color(0.960784, 0.494118, 0.764706, 1)
+theme_override_constants/outline_size = 35
+theme_override_fonts/font = ExtResource("4_x6egw")
+theme_override_font_sizes/font_size = 150
+text = "Gacha-mon"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="Buttons/Gacha Button" to="." method="_on_gacha_button_pressed"]
 [connection signal="pressed" from="Buttons/Battle Button" to="." method="_on_battle_button_pressed"]
