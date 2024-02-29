@@ -44,28 +44,23 @@ func _input(event):
 		select_enemy()
 		get_viewport().set_input_as_handled()
 	
-	if (event.is_action_pressed("0_key_push")):
-		new_poten_input = 0
-	elif (event.is_action_pressed("1_key_push")):
-		new_poten_input = 1
-	elif (event.is_action_pressed("2_key_push")):
-		new_poten_input = 2
-	elif (event.is_action_pressed("3_key_push")):
-		new_poten_input = 3
-	elif (event.is_action_pressed("4_key_push")):
-		new_poten_input = 4
-		
-	if(new_poten_input > former_poten_input):
-		selected_enemy_index = (selected_enemy_index + 1) 
-		if selected_enemy_index >= GameManager.num_of_unlocked_enemies:
-			selected_enemy_index = 0
-		former_poten_input = new_poten_input
+	if(event.is_action_pressed("0_key_push")):
+		selected_enemy_index = 0
 		update_selected_enemy()
-	elif (new_poten_input < former_poten_input):
-		selected_enemy_index = (selected_enemy_index - 1)
-		if selected_enemy_index < 0:
-			selected_enemy_index = GameManager.num_of_unlocked_enemies - 1
-		former_poten_input = new_poten_input
+	elif (event.is_action_pressed("1_key_push")):
+		selected_enemy_index = 1
+		update_selected_enemy()
+	elif (event.is_action_pressed("2_key_push")):
+		selected_enemy_index = 2
+		update_selected_enemy()
+	elif (event.is_action_pressed("3_key_push")):
+		selected_enemy_index = 3
+		update_selected_enemy()
+	elif (event.is_action_pressed("4_key_push")):
+		selected_enemy_index = 4
+		update_selected_enemy()
+	elif (event.is_action_pressed("5_key_push")):
+		selected_enemy_index = 5
 		update_selected_enemy()
 
 

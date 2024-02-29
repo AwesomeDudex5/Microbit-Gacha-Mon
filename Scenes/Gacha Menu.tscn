@@ -62,7 +62,7 @@ offset_top = 518.0
 offset_right = 469.0
 offset_bottom = 590.0
 theme_override_font_sizes/font_size = 26
-text = "1 Coin to Roll"
+text = "2 Coins to Roll"
 horizontal_alignment = 1
 vertical_alignment = 1
 

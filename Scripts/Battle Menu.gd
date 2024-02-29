@@ -57,6 +57,8 @@ func _unhandled_input(event):
 		update_input(3)
 	elif (event.is_action_pressed("4_key_push")):
 		update_input(4)
+	elif (event.is_action_pressed("5_key_push")):
+		update_input(5)
 	
 	if event.is_action_pressed("right_button"):
 		transition_to_player_move()

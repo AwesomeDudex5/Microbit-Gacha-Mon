@@ -16,24 +16,28 @@ func _ready():
 
 
 func _input(event):
+	var num = -1
 	if(event.is_action_pressed("0_key_push")):
-		new_poten_input = 0
+		num = 0
 	elif (event.is_action_pressed("1_key_push")):
-		new_poten_input = 1
+		num = 1
 	elif (event.is_action_pressed("2_key_push")):
-		new_poten_input = 2
+		num = 2
 	elif (event.is_action_pressed("3_key_push")):
-		new_poten_input = 3
+		num = 3
 	elif (event.is_action_pressed("4_key_push")):
-		new_poten_input = 4
-		
-	if(new_poten_input > former_poten_input):
-		selected_button_index = (selected_button_index + 1) % total_main_menu_buttons
-		former_poten_input = new_poten_input
-		update_highlight_position()
-	elif (new_poten_input < former_poten_input):
-		selected_button_index = (selected_button_index - 1) % total_main_menu_buttons
-		former_poten_input = new_poten_input
+		num = 4
+	elif (event.is_action_pressed("5_key_push")):
+		num = 5
+	
+	if num == 0 or num == 1:
+		selected_button_index = 0
+	elif num == 2 or num == 3:
+		selected_button_index = 1
+	elif num == 4 or num == 5:
+		selected_button_index = 2
+	
+	if num != -1:
 		update_highlight_position()
 	elif (event.is_action_pressed("right_button")):
 		press_selected_button(selected_button_index)

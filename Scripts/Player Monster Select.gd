@@ -31,28 +31,23 @@ func _input(event):
 		select_monster()
 		get_viewport().set_input_as_handled()
 	
-	if (event.is_action_pressed("0_key_push")):
-		new_poten_input = 0
-	elif (event.is_action_pressed("1_key_push")):
-		new_poten_input = 1
-	elif (event.is_action_pressed("2_key_push")):
-		new_poten_input = 2
-	elif (event.is_action_pressed("3_key_push")):
-		new_poten_input = 3
-	elif (event.is_action_pressed("4_key_push")):
-		new_poten_input = 4
-		
-	if(new_poten_input > former_poten_input):
-		selected_monster_index = (selected_monster_index + 1) 
-		if selected_monster_index >= GameManager.pals_inventory.size():
-			selected_monster_index = 0
-		former_poten_input = new_poten_input
+	if(event.is_action_pressed("0_key_push")):
+		selected_monster_index = 0
 		update_selected_monster()
-	elif (new_poten_input < former_poten_input):
-		selected_monster_index = (selected_monster_index - 1)
-		if selected_monster_index < 0:
-			selected_monster_index = GameManager.pals_inventory.size() - 1
-		former_poten_input = new_poten_input
+	elif (event.is_action_pressed("1_key_push")):
+		selected_monster_index = 1
+		update_selected_monster()
+	elif (event.is_action_pressed("2_key_push")):
+		selected_monster_index = 2
+		update_selected_monster()
+	elif (event.is_action_pressed("3_key_push")):
+		selected_monster_index = 3
+		update_selected_monster()
+	elif (event.is_action_pressed("4_key_push")):
+		selected_monster_index = 4
+		update_selected_monster()
+	elif (event.is_action_pressed("5_key_push")):
+		selected_monster_index = 5
 		update_selected_monster()
 
 
