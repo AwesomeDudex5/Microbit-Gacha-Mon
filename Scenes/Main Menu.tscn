@@ -69,10 +69,10 @@ text = "Quit
 
 [node name="Title" type="Label" parent="."]
 layout_mode = 0
-offset_left = 170.0
-offset_top = 186.0
-offset_right = 1009.0
-offset_bottom = 429.0
+offset_left = 167.0
+offset_top = 210.0
+offset_right = 1006.0
+offset_bottom = 453.0
 theme_override_colors/font_color = Color(0.960784, 0.960784, 0.960784, 1)
 theme_override_colors/font_outline_color = Color(0.960784, 0.494118, 0.764706, 1)
 theme_override_constants/outline_size = 35
