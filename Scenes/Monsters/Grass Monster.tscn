@@ -2,11 +2,12 @@
 
 [ext_resource type="PackedScene" uid="uid://cbjrblmggahb3" path="res://Scenes/Monster.tscn" id="1_byra6"]
 [ext_resource type="Script" path="res://Scripts/Monsters/Grass Monster.gd" id="2_lpv54"]
-[ext_resource type="Texture2D" uid="uid://dujht10n3wu66" path="res://Sprites/bulbasaur.png" id="3_ag1cr"]
+[ext_resource type="Texture2D" uid="uid://dwq32kq3dhjrl" path="res://Sprites/Grass-mon-1.png" id="3_0ul1y"]
 
 [node name="Monster" instance=ExtResource("1_byra6")]
 script = ExtResource("2_lpv54")
 starting_def = 2
 
 [node name="Sprite2D" parent="." index="0"]
-texture = ExtResource("3_ag1cr")
+scale = Vector2(-0.5, 0.5)
+texture = ExtResource("3_0ul1y")

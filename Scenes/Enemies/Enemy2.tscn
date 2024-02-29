@@ -2,12 +2,15 @@
 
 [ext_resource type="PackedScene" uid="uid://cbjrblmggahb3" path="res://Scenes/Monster.tscn" id="1_rxybh"]
 [ext_resource type="Script" path="res://Scripts/Enemies/Enemy2.gd" id="2_3udaf"]
-[ext_resource type="Texture2D" uid="uid://fjob8jkku6pi" path="res://Sprites/pidgey.png" id="3_pamb8"]
+[ext_resource type="Texture2D" uid="uid://b756b3pi7tk82" path="res://Sprites/enemy-mon-2.png" id="3_p4qqp"]
 
 [node name="Monster" instance=ExtResource("1_rxybh")]
 script = ExtResource("2_3udaf")
 max_hp = 7
+coins = 2
+enemy_num = 2
 
 [node name="Sprite2D" parent="." index="0"]
-scale = Vector2(1, 1)
-texture = ExtResource("3_pamb8")
+position = Vector2(-13, -20)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_p4qqp")

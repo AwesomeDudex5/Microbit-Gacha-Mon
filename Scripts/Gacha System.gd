@@ -42,6 +42,8 @@ func gacha_roll():
 		
 		pal_sprite.self_modulate = Color(0, 0, 0, 0)
 		
+		
+		
 		#store the index of the pal so can call it from Pal List
 		if !GameManager.pals_inventory.has(GameManager.pal_list[random_index]):
 			GameManager.pals_inventory.append(GameManager.pal_list[random_index])

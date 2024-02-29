@@ -145,8 +145,10 @@ func transition_to_win():
 	var scene = combat_end_scene.instantiate()
 	get_parent().add_child(scene)
 	scene.outcome = scene.WIN
+	scene.coins_won = enemy_monster.coins
 	scene.victory_sfx.play()
 	scene.do_win()
+	GameManager.add_enemy_to_list(enemy_monster.enemy_num)
 	player_monster.reparent(scene.monster_position)
 	player_monster.position.x = 0
 	player_monster.position.y = 0
@@ -157,6 +159,7 @@ func transition_to_loss():
 	var scene = combat_end_scene.instantiate()
 	get_parent().add_child(scene)
 	scene.outcome = scene.LOSS
+	scene.coins_won = 1
 	scene.loss_sfx.play()
 	scene.do_loss()
 	player_monster.reparent(scene.monster_position)

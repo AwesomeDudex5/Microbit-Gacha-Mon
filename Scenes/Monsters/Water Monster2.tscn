@@ -2,10 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://cbjrblmggahb3" path="res://Scenes/Monster.tscn" id="1_hcfn1"]
 [ext_resource type="Script" path="res://Scripts/Monsters/Water Monster2.gd" id="2_70bxm"]
-[ext_resource type="Texture2D" uid="uid://cp45u47aqdnhx" path="res://Sprites/staryu.png" id="3_hod45"]
+[ext_resource type="Texture2D" uid="uid://ck6j0fv06u2ha" path="res://Sprites/Water-mon-2.png" id="3_q4yf7"]
 
 [node name="Monster" instance=ExtResource("1_hcfn1")]
 script = ExtResource("2_70bxm")
 
 [node name="Sprite2D" parent="." index="0"]
-texture = ExtResource("3_hod45")
+scale = Vector2(-0.5, 0.5)
+texture = ExtResource("3_q4yf7")

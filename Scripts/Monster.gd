@@ -4,6 +4,8 @@ extends Node
 @export var max_hp = 10
 @export var starting_att = 0
 @export var starting_def = 0
+@export var coins = 0
+@export var enemy_num = 0
 var moves = []
 @onready var MoveList = get_child(0)
 @onready var current_hp = max_hp

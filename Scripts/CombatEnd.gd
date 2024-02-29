@@ -31,3 +31,5 @@ func do_win():
 	$Title.text = "you won!"
 	$"Lower Text".text = "you got " + str(coins_won) + " coins!\npress any button to continue"
 	GameManager.total_coins += coins_won
+	if GameManager.num_of_unlocked_enemies < 6:
+		pass

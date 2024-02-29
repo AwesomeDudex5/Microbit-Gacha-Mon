@@ -10,7 +10,7 @@ var m1_name = "water1"
 var m1_description = "deals 1-2 DMG"
 func move1(user: Monster, enemy: Monster):	
 	var min_damage = 1
-	var max_damage = 2
+	var max_damage = 3
 	var r = randi_range(min_damage, max_damage)
 	var dmg1 = deal_damage(r, user, enemy)
 	r = randi_range(min_damage, max_damage)

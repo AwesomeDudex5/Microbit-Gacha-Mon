@@ -6,8 +6,8 @@ var new_poten_input = 0
 var former_poten_input = 0
 
 @export var panel_list: Array[Panel]
-var gray = Color(.5, .5, .5, .8)
-var dark_gray = Color(.25, .25, .25, .5)
+var gray = Color(.5, .5, .5, 1.0)
+var dark_gray = Color(0, 0, 0, 1.0)
 var white = Color(1.0, 1.0, 1.0, 1.0)
 @onready var enemy_list = [
 	panel_list[0].find_child("Monster"),
