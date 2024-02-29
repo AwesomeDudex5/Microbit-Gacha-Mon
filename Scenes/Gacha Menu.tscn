@@ -76,5 +76,14 @@ text = "Coins Owned: 0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="All Mons Obtained" type="Label" parent="Gacha System"]
+visible = false
+offset_left = 727.0
+offset_top = 57.0
+offset_right = 1023.0
+offset_bottom = 103.0
+theme_override_font_sizes/font_size = 33
+text = "all mons obtained!"
+
 [connection signal="pressed" from="Buttons/Back Button" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="Buttons/Roll Button" to="." method="_on_roll_button_pressed"]

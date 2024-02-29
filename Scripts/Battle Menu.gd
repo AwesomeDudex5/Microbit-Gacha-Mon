@@ -79,6 +79,8 @@ func transition_to_player_move():
 	move_one_container.visible = false
 	move_two_container.visible = false
 	move_description.visible = false
+	move_one_label.text = player_monster.m1_name
+	move_two_label.text = player_monster.m2_name
 
 
 func transition_to_enemy_move():

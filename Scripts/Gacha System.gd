@@ -1,6 +1,6 @@
 extends Node
 
-var roll_cost = 1
+var roll_cost = 2
 var old_pal = null
 
 @onready var gacha_menu_node = $".."
@@ -24,6 +24,9 @@ func _process(delta):
 
 func gacha_roll():
 	print("Rolling")
+	if(GameManager.pals_inventory.size() >= 6):
+		$"All Mons Obtained".visible = true
+		return
 	if(GameManager.total_coins >= roll_cost):
 		# Roll New Pal
 		if old_pal != null:
@@ -40,7 +43,8 @@ func gacha_roll():
 		pal_sprite.self_modulate = Color(0, 0, 0, 0)
 		
 		#store the index of the pal so can call it from Pal List
-		GameManager.pals_inventory.append(GameManager.pal_list[random_index])
+		if !GameManager.pals_inventory.has(GameManager.pal_list[random_index]):
+			GameManager.pals_inventory.append(GameManager.pal_list[random_index])
 		
 		#Adjust Coins
 		GameManager.total_coins -= roll_cost

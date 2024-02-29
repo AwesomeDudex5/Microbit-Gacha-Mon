@@ -1,0 +1,12 @@
+[gd_scene load_steps=4 format=3 uid="uid://s7062mqi3msv"]
+
+[ext_resource type="PackedScene" uid="uid://cbjrblmggahb3" path="res://Scenes/Monster.tscn" id="1_1mgbd"]
+[ext_resource type="Script" path="res://Scripts/Monsters/Fire Monster2.gd" id="2_5ngav"]
+[ext_resource type="Texture2D" uid="uid://cwfalt8iriono" path="res://Sprites/slugma.png" id="3_rnqdy"]
+
+[node name="Monster" instance=ExtResource("1_1mgbd")]
+script = ExtResource("2_5ngav")
+max_hp = 12
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("3_rnqdy")

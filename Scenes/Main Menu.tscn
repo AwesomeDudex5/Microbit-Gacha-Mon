@@ -21,6 +21,17 @@ offset_right = -789.0
 offset_bottom = -49.0
 scale = Vector2(1.03624, 0.916488)
 
+[node name="No Mons" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 506.0
+offset_top = 446.0
+offset_right = 679.0
+offset_bottom = 495.0
+text = "you have no mons!
+go to the gacha first to get some"
+horizontal_alignment = 1
+
 [node name="Buttons" type="Control" parent="."]
 anchors_preset = 0
 offset_right = 40.0

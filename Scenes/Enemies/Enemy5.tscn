@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddvfaw08tprg6"]
+
+[ext_resource type="PackedScene" uid="uid://cbjrblmggahb3" path="res://Scenes/Monster.tscn" id="1_e17ur"]
+[ext_resource type="Script" path="res://Scripts/Enemies/Enemy5.gd" id="2_8q2io"]
+[ext_resource type="Texture2D" uid="uid://fjob8jkku6pi" path="res://Sprites/pidgey.png" id="3_l8k4b"]
+
+[node name="Monster" instance=ExtResource("1_e17ur")]
+script = ExtResource("2_8q2io")
+max_hp = 8
+starting_def = 2
+
+[node name="Sprite2D" parent="." index="0"]
+scale = Vector2(1, 1)
+texture = ExtResource("3_l8k4b")

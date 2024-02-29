@@ -44,14 +44,14 @@ func _input(event):
 		
 	if(new_poten_input > former_poten_input):
 		selected_monster_index = (selected_monster_index + 1) 
-		if selected_monster_index >= GameManager.num_of_unlocked_enemies:
+		if selected_monster_index >= GameManager.pals_inventory.size():
 			selected_monster_index = 0
 		former_poten_input = new_poten_input
 		update_selected_monster()
 	elif (new_poten_input < former_poten_input):
 		selected_monster_index = (selected_monster_index - 1)
 		if selected_monster_index < 0:
-			selected_monster_index = GameManager.num_of_unlocked_enemies - 1
+			selected_monster_index = GameManager.pals_inventory.size() - 1
 		former_poten_input = new_poten_input
 		update_selected_monster()
 

@@ -20,8 +20,8 @@ func excecute_move(move_number, user, enemy):
 
 func deal_damage(n, user: Monster, target: Monster):
 	var damage_dealt = n + user.current_att - target.current_def
-	if damage_dealt < 0:
-		damage_dealt = 0
+	if damage_dealt < 1:
+		damage_dealt = 1
 	target.current_hp -= damage_dealt
 	if target.current_hp < 0:
 		target.current_hp = 0
@@ -29,6 +29,9 @@ func deal_damage(n, user: Monster, target: Monster):
 
 
 func heal(n, target: Monster):
+	var heal = n
 	target.current_hp += n
 	if target.current_hp > target.max_hp:
+		n -= target.current_hp - target.max_hp
 		target.current_hp = target.max_hp
+	return heal

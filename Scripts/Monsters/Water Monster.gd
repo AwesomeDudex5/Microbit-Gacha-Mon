@@ -14,7 +14,7 @@ func move1(user: Monster, enemy: Monster):
 	var max_damage = 5
 	r = randi_range(min_damage, max_damage)
 	var dmg = deal_damage(r, user, enemy)
-	return "your mon used WATER1 for " + str(dmg) + "DMG!"
+	return "your mon used WATER1 for " + str(dmg) + " DMG!"
 
 
 var m2_name = "water2"
