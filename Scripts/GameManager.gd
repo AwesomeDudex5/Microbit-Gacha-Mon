@@ -9,7 +9,7 @@ extends Node
 
 var total_coins = 3
 var pals_inventory = [
-	preload("res://Scenes/Monsters/Water Monster2.tscn"),
+	
 ]
 var pal_list = [
 	preload("res://Scenes/Monsters/Water Monster2.tscn"),
