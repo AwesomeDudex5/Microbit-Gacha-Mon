@@ -45,22 +45,22 @@ func _input(event):
 		get_viewport().set_input_as_handled()
 	
 	if(event.is_action_pressed("0_key_push")):
-		selected_enemy_index = 0
-		update_selected_enemy()
+		edit_selected_enemy_index(0)
 	elif (event.is_action_pressed("1_key_push")):
-		selected_enemy_index = 1
-		update_selected_enemy()
+		edit_selected_enemy_index(1)
 	elif (event.is_action_pressed("2_key_push")):
-		selected_enemy_index = 2
-		update_selected_enemy()
+		edit_selected_enemy_index(2)
 	elif (event.is_action_pressed("3_key_push")):
-		selected_enemy_index = 3
-		update_selected_enemy()
+		edit_selected_enemy_index(3)
 	elif (event.is_action_pressed("4_key_push")):
-		selected_enemy_index = 4
-		update_selected_enemy()
+		edit_selected_enemy_index(4)
 	elif (event.is_action_pressed("5_key_push")):
-		selected_enemy_index = 5
+		edit_selected_enemy_index(5)
+
+
+func edit_selected_enemy_index(n):
+	if n < GameManager.num_of_unlocked_enemies:
+		selected_enemy_index = n
 		update_selected_enemy()
 
 

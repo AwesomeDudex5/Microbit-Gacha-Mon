@@ -7,8 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://dsayasiwgmilc" path="res://Sprites/capsule-vending-machine-png.png" id="3_yy7v0"]
 [ext_resource type="Texture2D" uid="uid://lllb8lxtru2c" path="res://Sprites/capsule-dial.png" id="6_e2edm"]
 
-[sub_resource type="Animation" id="Animation_5pepy"]
-resource_name = "capsule_roll"
+[sub_resource type="Animation" id="Animation_3auq1"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -16,10 +16,10 @@ tracks/0/path = NodePath("Pal Sprite:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.7, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0, 0.421962, -0.552926, 0.0]
+"values": [0.0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -46,8 +46,8 @@ tracks/2/keys = {
 "values": [true]
 }
 
-[sub_resource type="Animation" id="Animation_3auq1"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_5pepy"]
+resource_name = "capsule_roll"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -55,10 +55,10 @@ tracks/0/path = NodePath("Pal Sprite:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.2, 0.7, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [0.0]
+"values": [0.0, 0.421962, -0.552926, 0.0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false

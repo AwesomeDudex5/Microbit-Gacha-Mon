@@ -4,12 +4,11 @@
 [ext_resource type="Script" path="res://Scripts/Monsters/Fire Monster.gd" id="2_3wpsq"]
 [ext_resource type="Texture2D" uid="uid://ddqlwwri738yd" path="res://Sprites/enemy-mon-6.png" id="3_w78l6"]
 
-[node name="Monster" instance=ExtResource("1_gxq6j")]
+[node name="Monster2" instance=ExtResource("1_gxq6j")]
 script = ExtResource("2_3wpsq")
 coins = 4
 enemy_num = 6
 
 [node name="Sprite2D" parent="." index="0"]
-position = Vector2(-1, -57)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_w78l6")
