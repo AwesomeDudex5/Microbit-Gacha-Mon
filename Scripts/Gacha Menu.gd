@@ -60,7 +60,7 @@ func reset_menu_state():
 	current_gacha_menu_state = Gacha_Menu_States.Gacha_Menu
 	selected_button_index = 1
 	update_highlight_position()
-	$"Gacha System/Pal Sprite".texture = load("res://Sprites/capsule.png")
+	$"Gacha System/Pal Sprite".texture = load("res://Sprites/UI/capsule.png")
 
 func update_highlight_position():
 	var selected_button = get_node("Buttons").get_child(selected_button_index)

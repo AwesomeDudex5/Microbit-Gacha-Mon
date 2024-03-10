@@ -5,10 +5,11 @@ func _ready():
 	moves.append(move2)
 
 var description = "can charge up to unleash a powerful ATT!"
+var my_name = "Kris"
 
 var is_charging = false
 
-var m1_name = "fire1"
+var m1_name = "char"
 var m1_original_name = m1_name
 var m1_description = "deals 2-5 DMG"
 var m1_original_description = m1_description
@@ -20,10 +21,10 @@ func move1(user: Monster, enemy: Monster):
 	var max_damage = 5
 	var r = randi_range(min_damage, max_damage)
 	var dmg = deal_damage(r, user, enemy)
-	return "your mon used FIRE1 for " + str(dmg) + " DMG!"
+	return "your mon used CHAR for " + str(dmg) + " DMG!"
 
 
-var m2_name = "fire2"
+var m2_name = "charge"
 var m2_original_name = m2_name
 var m2_description = "charges for one turn and then uses a strong attack"
 var m2_original_description = m2_description

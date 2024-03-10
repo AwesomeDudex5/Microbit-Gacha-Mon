@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://clvkyaabe4lkr"
-path="res://.godot/imported/capsule.png-a4bd7fdcaff34072154394f9dc28ce00.ctex"
+uid="uid://bk2s6q88il0ht"
+path="res://.godot/imported/white panel.png-952c6d6f9bd99d0da219912719bd7a10.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/capsule.png"
-dest_files=["res://.godot/imported/capsule.png-a4bd7fdcaff34072154394f9dc28ce00.ctex"]
+source_file="res://Sprites/UI/white panel.png"
+dest_files=["res://.godot/imported/white panel.png-952c6d6f9bd99d0da219912719bd7a10.ctex"]
 
 [params]
 

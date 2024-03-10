@@ -13,16 +13,18 @@ var white = Color(1.0, 1.0, 1.0, 1.0)
 @onready var enemy_sprite
 @onready var player_sprite
 @onready var hurt_sfx = $HurtSFX
-@onready var battle_log = $BattleLog
+@onready var battle_log = $BattleLog/Text
 @onready var turn_timer = $TurnTimer
-@onready var player_hp_bar = $Player/HPBar
-@onready var enemy_hp_bar = $Player/HPBar
+@onready var player_hp_bar = $"Player/HP Holder/HPBar"
+@onready var enemy_hp_bar = $"Enemy/HP Holder/HPBar"
+@onready var player_def = $"Player/HP Holder/DEF"
+@onready var enemy_def = $"Player/HP Holder/DEF"
 @onready var move_one_container = $"Player/Move One"
 @onready var move_two_container = $"Player/Move Two"
 @onready var move_one_label = $"Player/Move One/Name"
 @onready var move_two_label = $"Player/Move Two/Name"
 @onready var move_description = $"Player/Move Description"
-@onready var move_description_label = $"Player/Move Description/Margin/Description"
+@onready var move_description_label = $"Player/Move Description/Description"
 
 var current_input = -1
 var new_input
@@ -95,6 +97,7 @@ func transition_to_select_move():
 	state = MOVE_SELECTION
 	$Player.visible = true
 	$Enemy.visible = true
+	$BattleLog.visible = true
 	move_one_container.visible = true
 	move_two_container.visible = true
 	move_description.visible = true
@@ -105,6 +108,7 @@ func transition_to_selecting_enemy():
 	state = SELECTING_ENEMY
 	$Player.visible = false
 	$Enemy.visible = false
+	$BattleLog.visible = false
 	select_enemy_scene = select_enemy_packed_scene.instantiate()
 	add_child(select_enemy_scene)
 	select_enemy_scene.battle_menu = self
@@ -115,10 +119,12 @@ func add_enemy_monster(scene):
 	scene.position.x = 0
 	scene.position.y = 0
 	enemy_monster = scene
-	enemy_hp_bar = $Enemy/HPBar
+	enemy_hp_bar = $"Enemy/HP Holder/HPBar"
+	enemy_def = $"Enemy/HP Holder/DEF"
 	enemy_hp_bar.set_max_hp(enemy_monster.max_hp)
 	enemy_sprite = $Enemy/Monster/Sprite2D
 	select_enemy_scene.queue_free()
+	enemy_sprite.scale *= Vector2(1.5, 1.5)
 	transition_to_selecting_player()
 
 
@@ -126,6 +132,7 @@ func transition_to_selecting_player():
 	state = SELECTING_PLAYER
 	$Player.visible = false
 	$Enemy.visible = false
+	$BattleLog.visible = false
 	select_player_scene = select_player_packed_scene.instantiate()
 	add_child(select_player_scene)
 	select_player_scene.battle_menu = self
@@ -136,10 +143,12 @@ func add_player_monster(scene):
 	scene.position.x = 0
 	scene.position.y = 0
 	player_monster = scene
-	player_hp_bar = $Player/HPBar
+	player_hp_bar = $"Player/HP Holder/HPBar"
+	enemy_def = $"Enemy/HP Holder/DEF"
 	player_hp_bar.set_max_hp(player_monster.max_hp)
 	player_sprite = $Player/Monster/Sprite2D
 	select_player_scene.queue_free()
+	player_sprite.scale *= Vector2(1.5, 1.5)
 	transition_to_select_move()
 
 
@@ -174,6 +183,7 @@ func execute_player_move(move_number):
 	var text = player_monster.excecute_move(move_number, player_monster, enemy_monster)
 	battle_log.text += text + "\n"
 	update_hp()
+	update_def()
 	if text.contains("DMG"): 
 		shake(enemy_sprite)
 		hurt_sfx.play()
@@ -184,6 +194,7 @@ func excecute_enemy_move():
 	var text = enemy_monster.excecute_move(move_number, enemy_monster, player_monster)
 	battle_log.text += text + "\n"
 	update_hp()
+	update_def()
 	if text.contains("DMG"): 
 		shake(player_sprite)
 		hurt_sfx.play()
@@ -192,6 +203,11 @@ func excecute_enemy_move():
 func update_hp():
 	player_hp_bar.update_hp(player_monster.current_hp)
 	enemy_hp_bar.update_hp(enemy_monster.current_hp)
+
+
+func update_def():
+	enemy_def.update_def(enemy_monster.current_def)
+	player_def.update_def(player_monster.current_def)
 
 
 func change_selection():

@@ -22,7 +22,7 @@ var mon_get_sound = "res://Sounds/mon_get.wav"
 var gacha_crank_sound = "res://Sounds/crank.wav"
 var coin_insert_sound = "res://Sounds/coin_insert.wav"
 var rolling_sound = "res://Sounds/rolling2.wav"
-
+var crank_rotation_unit = 1
 
 
 # Called when the node enters the scene tree for the first time.
@@ -30,7 +30,7 @@ func _ready():
 	#initialize gacha signal and base spprite
 	gacha_menu_node.connect("start_gacha", set_rolling_menu)
 	set_gacha_menu()
-	pal_sprite.texture = load("res://Sprites/capsule.png")
+	pal_sprite.texture = load("res://Sprites/UI/capsule.png")
 	coins_label.text = "Coins Owned: " + str(GameManager.total_coins)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -45,7 +45,19 @@ func _input(event):
 			audio_player.stream = audio_stream
 			audio_player.play()
 			print("Coin Inserted")
-		if(event.is_action_pressed("0_key_push")):
+		if (event.is_action_pressed("0_key_push")):
+			$"Dial Sprite".rotation = crank_rotation_unit * 0
+		if (event.is_action_pressed("1_key_push")):
+			$"Dial Sprite".rotation = crank_rotation_unit * 1
+		if (event.is_action_pressed("2_key_push")):
+			$"Dial Sprite".rotation = crank_rotation_unit * 2
+		if (event.is_action_pressed("3_key_push")):
+			$"Dial Sprite".rotation = crank_rotation_unit * 3
+		if (event.is_action_pressed("4_key_push")):
+			$"Dial Sprite".rotation = crank_rotation_unit * 4
+		if (event.is_action_pressed("5_key_push")):
+			$"Dial Sprite".rotation = crank_rotation_unit * 5
+		if (event.is_action_pressed("0_key_push")):
 			crank_set = true
 			audio_stream = load(gacha_crank_sound)
 			audio_player.stream = audio_stream
@@ -79,7 +91,7 @@ func set_rolling_menu():
 	
 	capsule_machine_sprite.visible = false
 	pal_sprite.visible = false
-	pal_sprite.texture = load("res://Sprites/capsule.png")
+	pal_sprite.texture = load("res://Sprites/UI/capsule.png")
 	
 func set_gacha_menu():
 	rolling_state = false
@@ -95,7 +107,7 @@ func set_gacha_menu():
 		old_pal.visible = false
 	capsule_machine_sprite.visible = true
 	pal_sprite.visible = true
-	pal_sprite.texture = load("res://Sprites/capsule.png")
+	pal_sprite.texture = load("res://Sprites/UI/capsule.png")
 	
 	emit_signal("end_gacha")
 	
@@ -106,7 +118,7 @@ func gacha_roll():
 	#-----Play capsule animation
 	$"Crank Dial Text".visible = false
 	$"Dial Sprite".visible = false
-	pal_sprite.texture = load("res://Sprites/capsule.png")
+	pal_sprite.texture = load("res://Sprites/UI/capsule.png")
 	anim_player.play("capsule_roll")
 	await get_tree().create_timer(1.1).timeout
 	

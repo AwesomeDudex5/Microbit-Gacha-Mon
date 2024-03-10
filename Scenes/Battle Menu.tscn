@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c4xythlgbmlks"]
+[gd_scene load_steps=16 format=3 uid="uid://c4xythlgbmlks"]
 
 [ext_resource type="Script" path="res://Scripts/Battle Menu.gd" id="1_j2d7d"]
 [ext_resource type="AudioStream" uid="uid://ci57dfw32vgpj" path="res://Sounds/hurt.wav" id="2_6fjk4"]
@@ -6,6 +6,27 @@
 [ext_resource type="PackedScene" uid="uid://bvivgd31s38gg" path="res://Scenes/Player Monster Select.tscn" id="3_2u08b"]
 [ext_resource type="PackedScene" uid="uid://8b4pyot2gk72" path="res://Scenes/CombatEnd.tscn" id="4_0vxcf"]
 [ext_resource type="Script" path="res://Scripts/HPBar.gd" id="4_3u4l6"]
+[ext_resource type="Texture2D" uid="uid://bk2s6q88il0ht" path="res://Sprites/UI/white panel.png" id="5_hkf7x"]
+[ext_resource type="Texture2D" uid="uid://diymc58sk4lwy" path="res://Sprites/UI/hp container.png" id="6_bvim8"]
+[ext_resource type="Texture2D" uid="uid://c7ub0ht0uplvk" path="res://Sprites/UI/hp under.png" id="7_3o6fs"]
+[ext_resource type="Texture2D" uid="uid://sbh532lr7sni" path="res://Sprites/UI/hp over.png" id="8_7u64s"]
+[ext_resource type="Texture2D" uid="uid://bof3xykeswp8a" path="res://Sprites/UI/hp middle.png" id="9_p4ol1"]
+[ext_resource type="Texture2D" uid="uid://b8py73ewrqckt" path="res://Sprites/UI/DEF.png" id="11_kihek"]
+[ext_resource type="Script" path="res://Scripts/Display DEF.gd" id="12_lo2tt"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rpyau"]
+texture = ExtResource("5_hkf7x")
+texture_margin_left = 16.0
+texture_margin_top = 16.0
+texture_margin_right = 16.0
+texture_margin_bottom = 16.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4ki55"]
+texture = ExtResource("5_hkf7x")
+texture_margin_left = 16.0
+texture_margin_top = 16.0
+texture_margin_right = 16.0
+texture_margin_bottom = 16.0
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -19,12 +40,18 @@ select_enemy_packed_scene = ExtResource("2_pvo74")
 select_player_packed_scene = ExtResource("3_2u08b")
 combat_end_scene = ExtResource("4_0vxcf")
 
-[node name="BattleLog" type="RichTextLabel" parent="."]
+[node name="BattleLog" type="PanelContainer" parent="."]
 layout_mode = 0
-offset_left = 352.0
-offset_top = 430.0
-offset_right = 743.0
-offset_bottom = 585.0
+offset_left = 480.0
+offset_top = 368.0
+offset_right = 1024.0
+offset_bottom = 590.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_rpyau")
+
+[node name="Text" type="RichTextLabel" parent="BattleLog"]
+custom_minimum_size = Vector2(512, 190)
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 20
 scroll_following = true
 
@@ -35,101 +62,167 @@ stream = ExtResource("2_6fjk4")
 wait_time = 1.5
 
 [node name="Player" type="Node2D" parent="."]
-position = Vector2(220, 292)
+position = Vector2(285, 262)
 
 [node name="Move One" type="PanelContainer" parent="Player"]
-offset_left = -135.0
-offset_top = 143.0
-offset_right = -35.0
-offset_bottom = 193.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
+offset_left = -147.0
+offset_top = 218.0
+offset_right = -19.0
+offset_bottom = 282.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_rpyau")
 
 [node name="Name" type="Label" parent="Player/Move One"]
+custom_minimum_size = Vector2(96, 32)
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "move one"
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Move Two" type="PanelContainer" parent="Player"]
-offset_left = 14.0
-offset_top = 143.0
-offset_right = 114.0
-offset_bottom = 193.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
+offset_left = 19.0
+offset_top = 218.0
+offset_right = 147.0
+offset_bottom = 282.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_rpyau")
 
 [node name="Name" type="Label" parent="Player/Move Two"]
+custom_minimum_size = Vector2(96, 32)
 layout_mode = 2
-text = "move two"
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "move one"
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Move Description" type="PanelContainer" parent="Player"]
-offset_left = -131.0
-offset_top = 211.0
-offset_right = 109.0
-offset_bottom = 291.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
+offset_left = -147.0
+offset_top = 298.0
+offset_right = 147.0
+offset_bottom = 426.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_4ki55")
 
-[node name="Margin" type="MarginContainer" parent="Player/Move Description"]
-layout_mode = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8
-
-[node name="Description" type="Label" parent="Player/Move Description/Margin"]
-custom_minimum_size = Vector2(224, 64)
+[node name="Description" type="Label" parent="Player/Move Description"]
+custom_minimum_size = Vector2(262, 0)
 layout_mode = 2
 size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "description"
 autowrap_mode = 3
 
-[node name="HPBar" type="ProgressBar" parent="Player"]
-offset_left = -133.0
-offset_top = 84.0
-offset_right = 109.0
-offset_bottom = 127.0
+[node name="HP Holder" type="Sprite2D" parent="Player"]
+position = Vector2(-242, 119)
+texture = ExtResource("6_bvim8")
+
+[node name="HPBar" type="TextureProgressBar" parent="Player/HP Holder"]
+anchors_preset = -1
+anchor_left = 0.16
+anchor_top = 0.176
+anchor_right = 0.67
+anchor_bottom = 0.884
+offset_left = -40.32
+offset_top = -257.568
+offset_right = -44.34
+offset_bottom = -257.012
 max_value = 10.0
-step = 1.0
 value = 10.0
 rounded = true
-show_percentage = false
+fill_mode = 3
+texture_under = ExtResource("7_3o6fs")
+texture_over = ExtResource("8_7u64s")
+texture_progress = ExtResource("9_p4ol1")
 script = ExtResource("4_3u4l6")
 
-[node name="Label" type="Label" parent="Player/HPBar"]
+[node name="Label" type="Label" parent="Player/HP Holder/HPBar"]
 layout_mode = 0
-offset_right = 244.0
-offset_bottom = 44.0
+offset_top = 333.0
+offset_right = 48.0
+offset_bottom = 381.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 28
 text = "10"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Enemy" type="Node2D" parent="."]
-position = Vector2(876, 283)
+[node name="DEF" type="Sprite2D" parent="Player/HP Holder"]
+position = Vector2(0, -195)
+texture = ExtResource("11_kihek")
+script = ExtResource("12_lo2tt")
 
-[node name="HPBar" type="ProgressBar" parent="Enemy"]
-offset_left = -133.0
-offset_top = 84.0
-offset_right = 109.0
-offset_bottom = 127.0
+[node name="Label" type="RichTextLabel" parent="Player/HP Holder/DEF"]
+offset_left = -25.0
+offset_top = -26.0
+offset_right = 25.0
+offset_bottom = 33.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 23
+theme_override_font_sizes/bold_font_size = 20
+bbcode_enabled = true
+text = "[b][center] DEF
+0[/center]"
+
+[node name="Enemy" type="Node2D" parent="."]
+position = Vector2(822, 219)
+
+[node name="HP Holder" type="Sprite2D" parent="Enemy"]
+position = Vector2(287, 48)
+rotation = 3.14159
+texture = ExtResource("6_bvim8")
+
+[node name="HPBar" type="TextureProgressBar" parent="Enemy/HP Holder"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -126.0
+offset_top = -435.0
+offset_right = -78.0
+offset_bottom = -50.0
+grow_horizontal = 0
+grow_vertical = 2
 max_value = 10.0
-step = 1.0
 value = 10.0
-fill_mode = 1
-show_percentage = false
+fill_mode = 3
+texture_under = ExtResource("7_3o6fs")
+texture_over = ExtResource("8_7u64s")
+texture_progress = ExtResource("9_p4ol1")
 script = ExtResource("4_3u4l6")
 metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="Enemy/HPBar"]
-layout_mode = 0
-offset_right = 244.0
-offset_bottom = 44.0
+[node name="Label" type="Label" parent="Enemy/HP Holder/HPBar"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -3.06252
+anchor_top = 0.988312
+anchor_right = -3.06252
+anchor_bottom = 0.988312
+offset_right = 243.0
+offset_bottom = 48.0
+rotation = 3.14159
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 28
 text = "10"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="DEF" type="Sprite2D" parent="Enemy/HP Holder"]
+position = Vector2(0.000488281, -196)
+rotation = -3.14159
+texture = ExtResource("11_kihek")
+script = ExtResource("12_lo2tt")
+
+[node name="Label" type="RichTextLabel" parent="Enemy/HP Holder/DEF"]
+offset_left = -25.0
+offset_top = -26.0
+offset_right = 25.0
+offset_bottom = 33.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 23
+theme_override_font_sizes/bold_font_size = 20
+bbcode_enabled = true
+text = "[b][center] DEF
+0[/center]"
 metadata/_edit_use_anchors_ = true
 
 [connection signal="timeout" from="TurnTimer" to="." method="_on_turn_timer_timeout"]

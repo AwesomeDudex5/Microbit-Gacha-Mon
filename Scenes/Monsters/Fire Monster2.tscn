@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Scripts/Monsters/Fire Monster2.gd" id="2_5ngav"]
 [ext_resource type="Texture2D" uid="uid://d2sttbnsq4ts6" path="res://Sprites/Fire-mon-2.png" id="3_06iy7"]
 
-[node name="Monster" instance=ExtResource("1_1mgbd")]
+[node name="Monster2" instance=ExtResource("1_1mgbd")]
 script = ExtResource("2_5ngav")
 max_hp = 12
 

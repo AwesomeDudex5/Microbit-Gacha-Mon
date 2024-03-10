@@ -13,7 +13,6 @@ config_version=5
 config/name="Microbit-gacha-mon"
 run/main_scene="res://Scenes/Main Menu.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
-config/icon="res://Sprites/capsule.png"
 
 [autoload]
 

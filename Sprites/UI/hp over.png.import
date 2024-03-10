@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://clvkyaabe4lkr"
-path="res://.godot/imported/capsule.png-a4bd7fdcaff34072154394f9dc28ce00.ctex"
+uid="uid://sbh532lr7sni"
+path="res://.godot/imported/hp over.png-ac0e0a7d13b5ae45bf997687adabb0dd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/capsule.png"
-dest_files=["res://.godot/imported/capsule.png-a4bd7fdcaff34072154394f9dc28ce00.ctex"]
+source_file="res://Sprites/UI/hp over.png"
+dest_files=["res://.godot/imported/hp over.png-ac0e0a7d13b5ae45bf997687adabb0dd.ctex"]
 
 [params]
 

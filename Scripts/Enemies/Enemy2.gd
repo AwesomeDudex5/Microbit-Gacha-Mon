@@ -5,6 +5,7 @@ func _ready():
 	moves.append(move2)
 
 var description = "this guy is a little tough. watch out for his heal!"
+var my_name = "Richard"
 
 var m1_name = "hit"
 var m1_description = "deals 3 DMG"

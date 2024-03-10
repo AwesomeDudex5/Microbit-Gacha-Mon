@@ -13,6 +13,7 @@ func select_move():
 	return n
 
 var description = "kind of dumb... hits hard, but sometimes does nothing"
+var my_name = "Miriam"
 
 var m1_name = "doze off"
 var m1_description = "does nothing"

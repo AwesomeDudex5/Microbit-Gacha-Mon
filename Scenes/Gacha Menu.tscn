@@ -3,9 +3,11 @@
 [ext_resource type="Script" path="res://Scripts/Gacha Menu.gd" id="1_wid83"]
 [ext_resource type="Script" path="res://Scripts/Gacha System.gd" id="2_506f3"]
 [ext_resource type="PackedScene" uid="uid://kw0ud4wldqe8" path="res://Prefabs/highlight_button.tscn" id="2_msih2"]
-[ext_resource type="Texture2D" uid="uid://dpbv0bjwnikbe" path="res://Sprites/capsule.png" id="3_7w1ss"]
 [ext_resource type="Texture2D" uid="uid://dsayasiwgmilc" path="res://Sprites/capsule-vending-machine-png.png" id="3_yy7v0"]
 [ext_resource type="Texture2D" uid="uid://lllb8lxtru2c" path="res://Sprites/capsule-dial.png" id="6_e2edm"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0f5lj"]
+load_path = "res://.godot/imported/capsule.png-a4bd7fdcaff34072154394f9dc28ce00.ctex"
 
 [sub_resource type="Animation" id="Animation_3auq1"]
 length = 0.001
@@ -31,7 +33,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("3_7w1ss")]
+"values": [SubResource("CompressedTexture2D_0f5lj")]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -70,7 +72,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("3_7w1ss")]
+"values": [SubResource("CompressedTexture2D_0f5lj")]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -144,7 +146,7 @@ texture = ExtResource("6_e2edm")
 [node name="Pal Sprite" type="Sprite2D" parent="Gacha System"]
 position = Vector2(800, 282)
 scale = Vector2(0.535282, 0.535282)
-texture = ExtResource("3_7w1ss")
+texture = SubResource("CompressedTexture2D_0f5lj")
 
 [node name="Capsule Machine Sprite" type="Sprite2D" parent="Gacha System"]
 visible = false
