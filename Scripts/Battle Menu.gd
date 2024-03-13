@@ -6,8 +6,8 @@ var select_enemy_scene
 var select_player_scene
 @export var combat_end_scene: PackedScene
 var selected_move = 1
-var yellow = Color(1.0, 1.0, 0.0, 1.0)
-var white = Color(1.0, 1.0, 1.0, 1.0)
+@export var blue = Color(1.0, 1.0, 0.0, 1.0)
+var black = Color(0, 0, 0, 1.0)
 @onready var player_monster
 @onready var enemy_monster
 @onready var enemy_sprite
@@ -83,8 +83,6 @@ func transition_to_player_move():
 	move_one_container.visible = false
 	move_two_container.visible = false
 	move_description.visible = false
-	move_one_label.text = player_monster.m1_name
-	move_two_label.text = player_monster.m2_name
 
 
 func transition_to_enemy_move():
@@ -101,6 +99,8 @@ func transition_to_select_move():
 	move_one_container.visible = true
 	move_two_container.visible = true
 	move_description.visible = true
+	move_one_label.text = player_monster.m1_name
+	move_two_label.text = player_monster.m2_name
 	update_selected_move()
 
 
@@ -236,12 +236,12 @@ func shake(sprite):
 
 func update_selected_move():
 	if selected_move == 1:
-		move_one_label.set("theme_override_colors/font_color", yellow)
-		move_two_label.set("theme_override_colors/font_color", white)
+		move_one_label.set("theme_override_colors/font_color", blue)
+		move_two_label.set("theme_override_colors/font_color", black)
 		move_description_label.text = player_monster.m1_description
 	else:
-		move_two_label.set("theme_override_colors/font_color", yellow)
-		move_one_label.set("theme_override_colors/font_color", white)
+		move_two_label.set("theme_override_colors/font_color", blue)
+		move_one_label.set("theme_override_colors/font_color", black)
 		move_description_label.text = player_monster.m2_description
 
 

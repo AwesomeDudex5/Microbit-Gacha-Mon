@@ -39,6 +39,7 @@ script = ExtResource("1_j2d7d")
 select_enemy_packed_scene = ExtResource("2_pvo74")
 select_player_packed_scene = ExtResource("3_2u08b")
 combat_end_scene = ExtResource("4_0vxcf")
+blue = Color(0.172549, 0, 0.937255, 1)
 
 [node name="BattleLog" type="PanelContainer" parent="."]
 layout_mode = 0
@@ -75,6 +76,7 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_rpyau")
 custom_minimum_size = Vector2(96, 32)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 text = "move one"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -90,6 +92,7 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_rpyau")
 custom_minimum_size = Vector2(96, 32)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 text = "move one"
 horizontal_alignment = 1
 vertical_alignment = 1
