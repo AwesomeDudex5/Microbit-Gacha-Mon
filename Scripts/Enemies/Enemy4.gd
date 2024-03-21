@@ -17,8 +17,8 @@ var my_name = "Bradley"
 var m1_name = "charge"
 var m1_description = "stores power"
 func move1(user: Monster, enemy: Monster):
-	var r = randi_range(0, 1)
-	if r == 1:
+	var r = randi_range(0, 2)
+	if r == 2:
 		current_def += 1
 		return "enemy mon used CHARGE! it's storing power... its DEF raised by 1!"
 	return "enemy mon used CHARGE! it's storing power..."
