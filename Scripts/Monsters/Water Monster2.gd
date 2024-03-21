@@ -4,7 +4,7 @@ func _ready():
 	moves.append(move1)
 	moves.append(move2)
 
-var description = "does inconsistent damage and heals itself"
+var description = "does inconsistent damage and heals himself"
 var my_name = "Matthew"
 
 var m1_name = "icicles"

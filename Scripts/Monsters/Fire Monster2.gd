@@ -5,7 +5,7 @@ func _ready():
 	moves.append(move2)
 
 var description = "can charge up to unleash a powerful ATT!"
-var my_name = "Kris"
+var my_name = "David"
 
 var is_charging = false
 

@@ -4,7 +4,7 @@ func _ready():
 	moves.append(move1)
 	moves.append(move2)
 
-var description = "this guy's got high defense! don't let his low HP fool you!"
+var description = "this guy's got high defense! don't let their low HP fool you!"
 var my_name = "Kris"
 
 var m1_name = "kick"

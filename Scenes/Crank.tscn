@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://bff6tu8rajd54"]
+
+[ext_resource type="Texture2D" uid="uid://bhos7iypu4w5o" path="res://Sprites/UI/crank.png" id="1_2xq1o"]
+[ext_resource type="Script" path="res://Scripts/Crank.gd" id="2_d331l"]
+
+[node name="Crank" type="Sprite2D"]
+texture = ExtResource("1_2xq1o")
+script = ExtResource("2_d331l")

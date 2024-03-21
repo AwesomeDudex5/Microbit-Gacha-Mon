@@ -39,42 +39,42 @@ func _process(delta):
 
 func _input(event):
 	if(rolling_state == true && finished_rolling == false):
-		if(event.is_action_pressed("left_button")):
+		if(event.is_action_pressed("left_button") || event.is_action_pressed("ui_accept")):
 			coin_inserted = true
 			audio_stream = load(coin_insert_sound)
 			audio_player.stream = audio_stream
 			audio_player.play()
 			print("Coin Inserted")
-		if (event.is_action_pressed("0_key_push")):
+		if (event.is_action_pressed("0_key_push") || event.is_action_pressed("ui_left")):
 			$"Dial Sprite".rotation = crank_rotation_unit * 0
 		if (event.is_action_pressed("1_key_push")):
 			$"Dial Sprite".rotation = crank_rotation_unit * 1
-		if (event.is_action_pressed("2_key_push")):
+		if (event.is_action_pressed("2_key_push") || event.is_action_pressed("ui_up")):
 			$"Dial Sprite".rotation = crank_rotation_unit * 2
 		if (event.is_action_pressed("3_key_push")):
 			$"Dial Sprite".rotation = crank_rotation_unit * 3
-		if (event.is_action_pressed("4_key_push")):
+		if (event.is_action_pressed("4_key_push") || event.is_action_pressed("ui_right")):
 			$"Dial Sprite".rotation = crank_rotation_unit * 4
-		if (event.is_action_pressed("5_key_push")):
+		if (event.is_action_pressed("5_key_push") || event.is_action_pressed("ui_down")):
 			$"Dial Sprite".rotation = crank_rotation_unit * 5
-		if (event.is_action_pressed("0_key_push")):
+		if (event.is_action_pressed("0_key_push") || event.is_action_pressed("ui_left")):
 			crank_set = true
 			audio_stream = load(gacha_crank_sound)
 			audio_player.stream = audio_stream
 			audio_player.play()
 			print("Crank Set")
 		if(crank_set == true && coin_inserted == true):
-			if(event.is_action_pressed("5_key_push")):
+			if(event.is_action_pressed("5_key_push") || event.is_action_pressed("ui_down")):
 				audio_stream = load(rolling_sound)
 				audio_player.stream = audio_stream
 				audio_player.play()
 				gacha_roll()
 	if(finished_rolling == true):
-		if(event.is_action_pressed("left_button")):
+		if(event.is_action_pressed("left_button") || event.is_action_pressed("ui_cancel")):
 			pal_sprite.self_modulate = Color(1, 1, 1, 1)
 			set_gacha_menu()
 			finished_rolling = false
-				
+			get_viewport().set_input_as_handled()
 			emit_signal("end_gacha")
 
 	
@@ -85,7 +85,7 @@ func set_rolling_menu():
 	$"Coins to Roll".visible = false
 	$"Coins Available".visible = false
 	$"../Buttons/Roll Button".visible = false
-	$"../highlight_button".visible = false
+	$"../Buttons/Back Button".visible = false
 	$"Old Mon Acquired".visible = false
 	$"New Mon Acquired".visible = false
 	
@@ -100,7 +100,7 @@ func set_gacha_menu():
 	$"Coins to Roll".visible = true
 	$"Coins Available".visible = true
 	$"../Buttons/Roll Button".visible = true
-	$"../highlight_button".visible = true
+	$"../Buttons/Back Button".visible = true
 	$"Old Mon Acquired".visible = false
 	$"New Mon Acquired".visible = false
 	if(old_pal != null):
@@ -110,7 +110,11 @@ func set_gacha_menu():
 	pal_sprite.texture = load("res://Sprites/UI/capsule.png")
 	
 	emit_signal("end_gacha")
-	
+	if GameManager.has_all_mons():
+		print("HEREHREHREHEHHREHRE")
+
+
+
 
 func gacha_roll():
 	print("Rolling")

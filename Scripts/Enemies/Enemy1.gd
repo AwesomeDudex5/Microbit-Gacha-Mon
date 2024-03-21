@@ -4,7 +4,7 @@ func _ready():
 	moves.append(move1)
 	moves.append(move2)
 
-var description = "weakest guy around. shouldn't put up too much of a fight"
+var description = "weakest one around. shouldn't put up too much of a fight"
 var my_name = "Sarah"
 
 var m1_name = "smack"

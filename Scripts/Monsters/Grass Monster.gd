@@ -4,7 +4,7 @@ func _ready():
 	moves.append(move1)
 	moves.append(move2)
 
-var description = "leeches HP slowly or heals itself fully!"
+var description = "leeches HP slowly or heals himself fully!"
 var my_name = "Quinten"
 
 var m1_name = "leech"

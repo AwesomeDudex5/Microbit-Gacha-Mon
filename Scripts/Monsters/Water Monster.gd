@@ -4,7 +4,7 @@ func _ready():
 	moves.append(move1)
 	moves.append(move2)
 
-var description = "all-arounder. can increase DEF!"
+var description = "an all-arounder. can increase his DEF!"
 var my_name = "Maxwell"
 
 var m1_name = "torrent"

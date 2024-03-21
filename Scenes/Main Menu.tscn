@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://ccnrnkw414kg6"]
 
 [ext_resource type="Script" path="res://Scripts/Main Menu.gd" id="1_kt68n"]
-[ext_resource type="PackedScene" uid="uid://kw0ud4wldqe8" path="res://Prefabs/highlight_button.tscn" id="2_ifb6n"]
 [ext_resource type="PackedScene" uid="uid://b3emk4p8tjoki" path="res://Prefabs/game_manager.tscn" id="3_tx85f"]
+[ext_resource type="StyleBox" uid="uid://d2lwngmiejmca" path="res://Sprites/panel.tres" id="3_vd5f5"]
 [ext_resource type="FontFile" uid="uid://c7kqpyc6orehc" path="res://Fonts/KATANA.ttf" id="4_x6egw"]
 
 [node name="Menu" type="Control"]
@@ -13,14 +13,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_kt68n")
-
-[node name="highlight_button" parent="." instance=ExtResource("2_ifb6n")]
-layout_mode = 1
-offset_left = 105.0
-offset_top = 505.0
-offset_right = -789.0
-offset_bottom = -49.0
-scale = Vector2(1.03624, 0.916488)
+blue = Color(0.172549, 0, 0.937255, 1)
 
 [node name="No Mons" type="Label" parent="."]
 visible = false
@@ -33,46 +26,77 @@ text = "you have no mons!
 go to the gacha first to get some"
 horizontal_alignment = 1
 
+[node name="Have All Mons" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 141.0
+offset_top = 459.0
+offset_right = 327.0
+offset_bottom = 508.0
+theme_override_font_sizes/font_size = 20
+text = "you've already collected 
+all the mons!"
+horizontal_alignment = 1
+
 [node name="Buttons" type="Control" parent="."]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Gacha Button" type="Button" parent="Buttons"]
+[node name="Gacha Button" type="PanelContainer" parent="Buttons"]
 layout_mode = 2
 offset_left = 107.0
 offset_top = 520.0
 offset_right = 369.0
 offset_bottom = 576.0
-text = "Gacha
-"
+theme_override_styles/panel = ExtResource("3_vd5f5")
 
-[node name="Battle Button" type="Button" parent="Buttons"]
+[node name="Label" type="Label" parent="Buttons/Gacha Button"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "Gacha"
+horizontal_alignment = 1
+
+[node name="Battle Button" type="PanelContainer" parent="Buttons"]
 layout_mode = 2
 offset_left = 434.0
 offset_top = 512.0
 offset_right = 786.0
 offset_bottom = 580.0
+theme_override_styles/panel = ExtResource("3_vd5f5")
+
+[node name="Label" type="Label" parent="Buttons/Battle Button"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
 text = "Battle
 "
+horizontal_alignment = 1
 
-[node name="Quit Button" type="Button" parent="Buttons"]
+[node name="Quit Button" type="PanelContainer" parent="Buttons"]
 layout_mode = 2
 offset_left = 833.0
 offset_top = 524.0
 offset_right = 1021.0
 offset_bottom = 569.0
-text = "Quit
-"
+theme_override_styles/panel = ExtResource("3_vd5f5")
+
+[node name="Label" type="Label" parent="Buttons/Quit Button"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "Quit"
+horizontal_alignment = 1
 
 [node name="GameManager" parent="." instance=ExtResource("3_tx85f")]
 
 [node name="Title" type="Label" parent="."]
 layout_mode = 0
-offset_left = 167.0
-offset_top = 210.0
-offset_right = 1006.0
-offset_bottom = 453.0
+offset_left = 162.0
+offset_top = 191.0
+offset_right = 1001.0
+offset_bottom = 434.0
 theme_override_colors/font_color = Color(0.960784, 0.960784, 0.960784, 1)
 theme_override_colors/font_outline_color = Color(0.960784, 0.494118, 0.764706, 1)
 theme_override_constants/outline_size = 35
@@ -81,7 +105,3 @@ theme_override_font_sizes/font_size = 150
 text = "Gacha-mon"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[connection signal="pressed" from="Buttons/Gacha Button" to="." method="_on_gacha_button_pressed"]
-[connection signal="pressed" from="Buttons/Battle Button" to="." method="_on_battle_button_pressed"]
-[connection signal="pressed" from="Buttons/Quit Button" to="." method="_on_quit_button_pressed"]

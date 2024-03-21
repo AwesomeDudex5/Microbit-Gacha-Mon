@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Scripts/Enemies/Enemy2.gd" id="2_3udaf"]
 [ext_resource type="Texture2D" uid="uid://b756b3pi7tk82" path="res://Sprites/enemy-mon-2.png" id="3_p4qqp"]
 
-[node name="Monster2" instance=ExtResource("1_rxybh")]
+[node name="Monster" instance=ExtResource("1_rxybh")]
 script = ExtResource("2_3udaf")
 max_hp = 7
 coins = 2

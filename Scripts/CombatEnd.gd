@@ -14,6 +14,10 @@ func _input(event):
 		go_to_main_menu()
 	if (event.is_action_pressed("left_button")):
 		go_to_main_menu()
+	if (event.is_action_pressed("ui_accept")):
+		go_to_main_menu()
+	if (event.is_action_pressed("ui_cancel")):
+		go_to_main_menu()
 
 
 func go_to_main_menu():

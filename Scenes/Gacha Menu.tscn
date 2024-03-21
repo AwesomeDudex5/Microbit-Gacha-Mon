@@ -1,10 +1,18 @@
-[gd_scene load_steps=10 format=3 uid="uid://cm1kyx8lomm4r"]
+[gd_scene load_steps=12 format=3 uid="uid://cm1kyx8lomm4r"]
 
 [ext_resource type="Script" path="res://Scripts/Gacha Menu.gd" id="1_wid83"]
 [ext_resource type="Script" path="res://Scripts/Gacha System.gd" id="2_506f3"]
-[ext_resource type="PackedScene" uid="uid://kw0ud4wldqe8" path="res://Prefabs/highlight_button.tscn" id="2_msih2"]
+[ext_resource type="Texture2D" uid="uid://bk2s6q88il0ht" path="res://Sprites/UI/white panel.png" id="3_6l4g4"]
+[ext_resource type="StyleBox" uid="uid://d2lwngmiejmca" path="res://Sprites/panel.tres" id="3_a8bwx"]
 [ext_resource type="Texture2D" uid="uid://dsayasiwgmilc" path="res://Sprites/capsule-vending-machine-png.png" id="3_yy7v0"]
 [ext_resource type="Texture2D" uid="uid://lllb8lxtru2c" path="res://Sprites/capsule-dial.png" id="6_e2edm"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8b61v"]
+texture = ExtResource("3_6l4g4")
+texture_margin_left = 24.0
+texture_margin_top = 24.0
+texture_margin_right = 24.0
+texture_margin_bottom = 24.0
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0f5lj"]
 load_path = "res://.godot/imported/capsule.png-a4bd7fdcaff34072154394f9dc28ce00.ctex"
@@ -101,33 +109,46 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_wid83")
-
-[node name="highlight_button" parent="." instance=ExtResource("2_msih2")]
-layout_mode = 1
+blue = Color(0.172549, 0, 0.937255, 1)
 
 [node name="Buttons" type="Control" parent="."]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Back Button" type="Button" parent="Buttons"]
+[node name="Back Button" type="PanelContainer" parent="Buttons"]
 layout_mode = 0
-offset_left = 26.0
-offset_top = 12.0
-offset_right = 199.0
-offset_bottom = 89.0
-text = "Back
-"
+offset_left = -59.0
+offset_top = -23.0
+offset_right = 110.0
+offset_bottom = 73.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_8b61v")
 
-[node name="Roll Button" type="Button" parent="Buttons"]
+[node name="Label" type="Label" parent="Buttons/Back Button"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "Back"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="Roll Button" type="PanelContainer" parent="Buttons"]
 visible = false
 layout_mode = 0
 offset_left = 494.0
 offset_top = 512.0
 offset_right = 667.0
 offset_bottom = 589.0
-text = "Roll
-"
+theme_override_styles/panel = ExtResource("3_a8bwx")
+
+[node name="Label" type="Label" parent="Buttons/Roll Button"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "Roll"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Gacha System" type="Node" parent="."]
 script = ExtResource("2_506f3")
@@ -156,13 +177,23 @@ texture = ExtResource("3_yy7v0")
 
 [node name="Crank Dial Text" type="Label" parent="Gacha System"]
 visible = false
-offset_left = 359.0
-offset_top = 501.0
-offset_right = 817.0
-offset_bottom = 576.0
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -343.5
+offset_top = -222.0
+offset_right = 343.5
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 0
 theme_override_font_sizes/font_size = 26
 text = "Press left button to insert coin
-Then crank the dial from left to right"
+Then crank the dial from left to right
+
+If you're using a keyboard, press SPACE to insert a coin 
+Then, tap the arrow keys clockwise from the left key"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -190,26 +221,25 @@ vertical_alignment = 1
 
 [node name="All Mons Obtained" type="Label" parent="Gacha System"]
 visible = false
-offset_left = 727.0
-offset_top = 57.0
-offset_right = 1023.0
-offset_bottom = 103.0
+offset_left = 389.0
+offset_top = 515.0
+offset_right = 685.0
+offset_bottom = 561.0
 theme_override_font_sizes/font_size = 33
 text = "all mons obtained!"
 
 [node name="Old Mon Acquired" type="Label" parent="Gacha System"]
-visible = false
-offset_left = 656.0
-offset_top = 439.0
-offset_right = 952.0
-offset_bottom = 485.0
+offset_left = 558.0
+offset_top = 437.0
+offset_right = 1102.0
+offset_bottom = 581.0
 theme_override_font_sizes/font_size = 33
 text = "Mon Acquired!
 
-Press left  button to confirm"
+press left button or esc to confirm"
+horizontal_alignment = 1
 
 [node name="New Mon Acquired" type="Label" parent="Gacha System"]
-visible = false
 offset_left = 567.0
 offset_top = 439.0
 offset_right = 1029.0
@@ -217,11 +247,8 @@ offset_bottom = 583.0
 theme_override_font_sizes/font_size = 33
 text = "New Mon Acquired!
 
-Press left  button to confirm
+Press left  button or esc to confirm
 "
 horizontal_alignment = 1
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Gacha System"]
-
-[connection signal="pressed" from="Buttons/Back Button" to="." method="_on_back_button_pressed"]
-[connection signal="pressed" from="Buttons/Roll Button" to="." method="_on_roll_button_pressed"]

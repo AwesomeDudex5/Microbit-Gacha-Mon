@@ -27,7 +27,7 @@ func _process(delta):
 
 
 func _input(event):
-	if (event.is_action_pressed("right_button")):
+	if (event.is_action_pressed("right_button") || event.is_action_pressed("ui_accept")):
 		select_monster()
 		get_viewport().set_input_as_handled()
 	
@@ -43,6 +43,18 @@ func _input(event):
 		edit_selected_monster_index(4)
 	elif (event.is_action_pressed("5_key_push")):
 		edit_selected_monster_index(5)
+	
+	var n = selected_monster_index
+	if (event.is_action_pressed("ui_next")):
+		n += 1
+		if n > GameManager.pals_inventory.size() - 1:
+			n = 0
+		edit_selected_monster_index(n)
+	if (event.is_action_pressed("ui_prev")):
+		n -= 1
+		if n < 0:
+			n = GameManager.pals_inventory.size() - 1
+		edit_selected_monster_index(n)
 
 
 func edit_selected_monster_index(n):

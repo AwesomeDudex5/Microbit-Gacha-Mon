@@ -12,6 +12,7 @@ func select_move():
 	charge_count += 1
 	return 1
 var description = "charges off and then lets off a boom! don't under estimate him!"
+var my_name = "Bradley"
 
 var m1_name = "charge"
 var m1_description = "stores power"

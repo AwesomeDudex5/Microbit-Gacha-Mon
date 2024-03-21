@@ -40,7 +40,7 @@ func _process(delta):
 
 
 func _input(event):
-	if (event.is_action_pressed("right_button")):
+	if (event.is_action_pressed("right_button") || event.is_action_pressed("ui_accept")):
 		select_enemy()
 		get_viewport().set_input_as_handled()
 	
@@ -56,7 +56,18 @@ func _input(event):
 		edit_selected_enemy_index(4)
 	elif (event.is_action_pressed("5_key_push")):
 		edit_selected_enemy_index(5)
-
+	
+	var n = selected_enemy_index
+	if (event.is_action_pressed("ui_next")):
+		n += 1
+		if n > GameManager.num_of_unlocked_enemies - 1:
+			n = 0
+		edit_selected_enemy_index(n)
+	if (event.is_action_pressed("ui_prev")):
+		n -= 1
+		if n < 0:
+			n = GameManager.num_of_unlocked_enemies - 1
+		edit_selected_enemy_index(n)
 
 func edit_selected_enemy_index(n):
 	if n < GameManager.num_of_unlocked_enemies:

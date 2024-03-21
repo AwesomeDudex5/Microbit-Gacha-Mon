@@ -8,6 +8,7 @@ var select_player_scene
 var selected_move = 1
 @export var blue = Color(1.0, 1.0, 0.0, 1.0)
 var black = Color(0, 0, 0, 1.0)
+var white = Color(1.0, 1.0, 1.0, 1.0)
 @onready var player_monster
 @onready var enemy_monster
 @onready var enemy_sprite
@@ -62,7 +63,12 @@ func _unhandled_input(event):
 	elif (event.is_action_pressed("5_key_push")):
 		update_input(5)
 	
-	if event.is_action_pressed("right_button"):
+	if event.is_action_pressed("ui_right"):
+		change_selection()
+	elif event.is_action_pressed("ui_left"):
+		change_selection()
+	
+	if event.is_action_pressed("right_button") || event.is_action_pressed("ui_accept"):
 		transition_to_player_move()
 
 
@@ -238,10 +244,14 @@ func update_selected_move():
 	if selected_move == 1:
 		move_one_label.set("theme_override_colors/font_color", blue)
 		move_two_label.set("theme_override_colors/font_color", black)
+		move_one_container.modulate = blue
+		move_two_container.modulate = white
 		move_description_label.text = player_monster.m1_description
 	else:
 		move_two_label.set("theme_override_colors/font_color", blue)
 		move_one_label.set("theme_override_colors/font_color", black)
+		move_two_container.modulate = blue
+		move_one_container.modulate = white
 		move_description_label.text = player_monster.m2_description
 
 

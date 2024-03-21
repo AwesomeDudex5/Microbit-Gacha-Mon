@@ -7,8 +7,14 @@ extends Node
 # https://freesound.org/people/LittleRobotSoundFactory/sounds/270329/
 # using with CC 4.0 by LittleRobotSoundFactory
 
-var total_coins = 3
+var total_coins = 300
 var pals_inventory = [
+	preload("res://Scenes/Monsters/Water Monster2.tscn"),
+	preload("res://Scenes/Monsters/Grass Monster2.tscn"),
+	preload("res://Scenes/Monsters/Fire Monster2.tscn"), 
+	preload("res://Scenes/Monsters/Fire Monster.tscn"), 
+	preload("res://Scenes/Monsters/Water Monster.tscn"),
+	preload("res://Scenes/Monsters/Grass Monster.tscn")
 ]
 var pal_list = [
 	preload("res://Scenes/Monsters/Water Monster2.tscn"),
@@ -20,6 +26,12 @@ var pal_list = [
 ]
 
 var unlocked_enemies = [
+	preload("res://Scripts/Enemies/Enemy1.gd"),
+	preload("res://Scripts/Enemies/Enemy2.gd"),
+	preload("res://Scripts/Enemies/Enemy3.gd"),
+	preload("res://Scripts/Enemies/Enemy4.gd"),
+	preload("res://Scripts/Enemies/Enemy5.gd"),
+	preload("res://Scripts/Enemies/Enemy6.gd")
 ]
 var enemy_list = [
 	preload("res://Scripts/Enemies/Enemy1.gd"),
@@ -29,8 +41,15 @@ var enemy_list = [
 	preload("res://Scripts/Enemies/Enemy5.gd"),
 	preload("res://Scripts/Enemies/Enemy6.gd")
 ]
-var num_of_unlocked_enemies = 1
+var num_of_unlocked_enemies = 6
 var max_enemies = 6
+
+
+func has_all_mons():
+	if pals_inventory.size() == 6:
+		return true
+	return false
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
