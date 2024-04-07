@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bk2s6q88il0ht" path="res://Sprites/UI/white panel.png" id="3_6l4g4"]
 [ext_resource type="StyleBox" uid="uid://d2lwngmiejmca" path="res://Sprites/panel.tres" id="3_a8bwx"]
 [ext_resource type="Texture2D" uid="uid://dsayasiwgmilc" path="res://Sprites/capsule-vending-machine-png.png" id="3_yy7v0"]
-[ext_resource type="Texture2D" uid="uid://lllb8lxtru2c" path="res://Sprites/capsule-dial.png" id="6_e2edm"]
+[ext_resource type="Texture2D" uid="uid://bhos7iypu4w5o" path="res://Sprites/UI/crank.png" id="5_yyiur"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8b61v"]
 texture = ExtResource("3_6l4g4")
@@ -162,7 +162,7 @@ libraries = {
 visible = false
 position = Vector2(590, 306)
 scale = Vector2(0.615234, 0.615234)
-texture = ExtResource("6_e2edm")
+texture = ExtResource("5_yyiur")
 
 [node name="Pal Sprite" type="Sprite2D" parent="Gacha System"]
 position = Vector2(800, 282)
@@ -189,11 +189,7 @@ offset_bottom = -30.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 26
-text = "Press left button to insert coin
-Then crank the dial from left to right
-
-If you're using a keyboard, press SPACE to insert a coin 
-Then, tap the arrow keys clockwise from the left key"
+text = "Press X to insert a coin and roll the gacha"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -236,7 +232,7 @@ offset_bottom = 581.0
 theme_override_font_sizes/font_size = 33
 text = "Mon Acquired!
 
-press left button or esc to confirm"
+press Z to confirm"
 horizontal_alignment = 1
 
 [node name="New Mon Acquired" type="Label" parent="Gacha System"]
@@ -247,7 +243,7 @@ offset_bottom = 583.0
 theme_override_font_sizes/font_size = 33
 text = "New Mon Acquired!
 
-Press left  button or esc to confirm
+Press Z to confirm
 "
 horizontal_alignment = 1
 

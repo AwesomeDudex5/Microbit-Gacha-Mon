@@ -9,6 +9,7 @@ var rolling_state = false
 var coin_inserted = false
 var crank_set = false
 var finished_rolling = false
+var is_rolling = false
 
 @onready var gacha_menu_node = $".."
 @onready var capsule_machine_sprite = $"Capsule Machine Sprite"
@@ -23,7 +24,7 @@ var gacha_crank_sound = "res://Sounds/crank.wav"
 var coin_insert_sound = "res://Sounds/coin_insert.wav"
 var rolling_sound = "res://Sounds/rolling2.wav"
 var crank_rotation_unit = 1
-
+var global_delta = 0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -36,39 +37,24 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	coins_label.text = "Coins Owned: " + str(GameManager.total_coins)
+	global_delta = delta
 
 func _input(event):
-	if(rolling_state == true && finished_rolling == false):
+	if(rolling_state == true && finished_rolling == false && !GameManager.has_all_mons()):
 		if(event.is_action_pressed("left_button") || event.is_action_pressed("ui_accept")):
 			coin_inserted = true
+			rolling_state = false
 			audio_stream = load(coin_insert_sound)
 			audio_player.stream = audio_stream
 			audio_player.play()
 			print("Coin Inserted")
-		if (event.is_action_pressed("0_key_push") || event.is_action_pressed("ui_left")):
-			$"Dial Sprite".rotation = crank_rotation_unit * 0
-		if (event.is_action_pressed("1_key_push")):
-			$"Dial Sprite".rotation = crank_rotation_unit * 1
-		if (event.is_action_pressed("2_key_push") || event.is_action_pressed("ui_up")):
-			$"Dial Sprite".rotation = crank_rotation_unit * 2
-		if (event.is_action_pressed("3_key_push")):
-			$"Dial Sprite".rotation = crank_rotation_unit * 3
-		if (event.is_action_pressed("4_key_push") || event.is_action_pressed("ui_right")):
-			$"Dial Sprite".rotation = crank_rotation_unit * 4
-		if (event.is_action_pressed("5_key_push") || event.is_action_pressed("ui_down")):
-			$"Dial Sprite".rotation = crank_rotation_unit * 5
-		if (event.is_action_pressed("0_key_push") || event.is_action_pressed("ui_left")):
-			crank_set = true
+			await get_tree().create_timer(1.25).timeout
+			# --------------------------------------------
 			audio_stream = load(gacha_crank_sound)
 			audio_player.stream = audio_stream
 			audio_player.play()
-			print("Crank Set")
-		if(crank_set == true && coin_inserted == true):
-			if(event.is_action_pressed("5_key_push") || event.is_action_pressed("ui_down")):
-				audio_stream = load(rolling_sound)
-				audio_player.stream = audio_stream
-				audio_player.play()
-				gacha_roll()
+			# --------------------------------------------
+			gacha_roll()
 	if(finished_rolling == true):
 		if(event.is_action_pressed("left_button") || event.is_action_pressed("ui_cancel")):
 			pal_sprite.self_modulate = Color(1, 1, 1, 1)
@@ -77,7 +63,7 @@ func _input(event):
 			get_viewport().set_input_as_handled()
 			emit_signal("end_gacha")
 
-	
+
 func set_rolling_menu():
 	rolling_state = true
 	$"Crank Dial Text".visible = true
@@ -118,13 +104,38 @@ func set_gacha_menu():
 
 func gacha_roll():
 	print("Rolling")
+	if (is_rolling):
+		return
 	
 	#-----Play capsule animation
 	$"Crank Dial Text".visible = false
+	
+	var duration = 1.5
+	var time = 0.0
+	var old_r = 0.0
+	var new_r = TAU
+	var r = old_r
+	
+	while time < duration:
+		var t = time / duration
+		t = ease_in_back(t)
+		
+		r = lerp(old_r, new_r, t)
+		$"Dial Sprite".rotation = r
+		
+		time += global_delta
+		await get_tree().process_frame
+	
+	$"Dial Sprite".rotation = new_r
+	
+	await get_tree().create_timer(.25).timeout
+	
 	$"Dial Sprite".visible = false
 	pal_sprite.texture = load("res://Sprites/UI/capsule.png")
 	anim_player.play("capsule_roll")
 	await get_tree().create_timer(1.1).timeout
+	
+	is_rolling = false
 	
 	audio_stream = load(mon_get_sound)
 	audio_player.stream = audio_stream
@@ -170,3 +181,16 @@ func gacha_roll():
 		print("Not Enough Coins")
 	
 	
+
+func ease_in_out_back(x):
+	const c1 = 1.70158
+	const c2 = c1 * 1.525
+	if x < 0.5:
+		return (pow(2 * x, 2) * ((c2 + 1) * 2 * x - c2)) / 2
+	else:
+		return (pow(2 * x - 2, 2) * ((c2 + 1) * (x * 2 - 2) + c2) + 2) / 2
+
+func ease_in_back(x):
+	const c1 = 1.70158
+	const c3 = c1 + 1
+	return c3 * x * x * x - c1 * x * x
