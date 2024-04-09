@@ -8,6 +8,7 @@
 script = ExtResource("2_vyi6a")
 max_hp = 16
 starting_def = 1
+coins = 5
 
 [node name="Sprite2D" parent="." index="0"]
 position = Vector2(0, -70)
