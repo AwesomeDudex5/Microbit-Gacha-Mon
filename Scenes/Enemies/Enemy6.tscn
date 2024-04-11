@@ -11,6 +11,6 @@ starting_def = 1
 coins = 5
 
 [node name="Sprite2D" parent="." index="0"]
-position = Vector2(0, -70)
+position = Vector2(0, -39)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("3_w78l6")
