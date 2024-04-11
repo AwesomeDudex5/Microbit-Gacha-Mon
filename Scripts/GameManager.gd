@@ -7,13 +7,9 @@ extends Node
 # https://freesound.org/people/LittleRobotSoundFactory/sounds/270329/
 # using with CC 4.0 by LittleRobotSoundFactory
 
-var total_coins = 600
+var total_coins = 3
 var pals_inventory = [
-	preload("res://Scenes/Monsters/Water Monster2.tscn"),
-	preload("res://Scenes/Monsters/Grass Monster2.tscn"),
-	preload("res://Scenes/Monsters/Fire Monster2.tscn"), 
-	preload("res://Scenes/Monsters/Fire Monster.tscn"), 
-	preload("res://Scenes/Monsters/Water Monster.tscn"), 
+	
 ]
 var pal_list = [
 	preload("res://Scenes/Monsters/Water Monster2.tscn"),
